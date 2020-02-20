@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "content": "You gotta do what you gotta do",
+      "important": true,
+      "id": 1
+    },
+    {
+      "content": "Get milk and cookies",
+      "important": false,
+      "id": 2
+    }
+  ]
+}
