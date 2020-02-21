@@ -9,15 +9,9 @@ import {
 } from "../store/todos/todoActions";
 
 const Todos = props => {
-  const handeFilter = todo => {
-    if (!props.filter.showImportant && !todo.important) return false;
-    if (!props.filter.showDone && todo.done) return false;
-    return true;
-  };
-
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
-    return props.todos.filter(handeFilter).map((todo, i) => {
+    return props.todos.map((todo, i) => {
       return (
         <tr
           key={i}
@@ -57,10 +51,20 @@ const Todos = props => {
   );
 };
 
+const todosToShow = ({ todos, filter }) => {
+  const filterConstaints = todo => {
+    if (!filter.showImportant && !todo.important) return false;
+    if (!filter.showDone && todo.done) return false;
+    return true;
+  };
+
+  return todos.filter(filterConstaints);
+};
+
 const mapStateToProps = state => {
   console.log("Todos state", state);
   return {
-    todos: state.todos,
+    todos: todosToShow(state),
     filter: state.filter
   };
 };
