@@ -1,38 +1,53 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
 import Filter from "./components/Filter";
 
-import { getTodos } from "./services/todoService";
+import { loadTodos } from "./store/todos/todoReducer";
+
+// import { getTodos } from "./services/todoService";
 
 const initialFilterState = {
   showImportant: true,
   showDone: true
 };
 
-function App() {
+function App(props) {
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState(initialFilterState);
 
   useEffect(() => {
-    refreshTodos();
+    props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
+    //refreshTodos();
   }, []);
 
-  const refreshTodos = () => {
-    getTodos()
-      .then(t => setTodos(t))
-      .catch(err => console.log(err));
-  };
+  // const refreshTodos = () => {
+  //   getTodos()
+  //     .then(t => setTodos(t))
+  //     .catch(err => console.log(err));
+  // };
 
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo todos={todos} setTodos={setTodos} />
+      <NewTodo todos={props.todos} setTodos={setTodos} />
       <Filter filter={filter} setFilter={setFilter} />
-      <Todos todos={todos} setTodos={setTodos} filter={filter}/>
+      <Todos todos={props.todos} setTodos={setTodos} filter={filter} />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log("App state", state);
+  return {
+    todos: state.todos
+  };
+};
+
+const mapDispatchToProps = {
+  loadTodos
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
