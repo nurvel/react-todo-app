@@ -18,7 +18,7 @@ npm run start # käynnistä app lokaalisti 3000
 
 ## BRANCHIT
 
-- react: vanilla react, ei reduxia, ei typescriptiä
+- vanilla-react: vanilla react, ei reduxia, ei typescriptiä
 - redux: react, reduxissa state, ei typescriptiä
 - typescript:  react, redux, typescript
 
