@@ -15,7 +15,7 @@ const Todos = props => {
     console.log(id);
     //    const todo = props.todos.find(t => t.id === id);
     await deleteTodo(id); // muutos serverille
-    props.setTodos(props.todos.filter(t => t.id !== id )); // muutetaan statea - ei ladata uusia serveriltä
+    props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
   };
 
   // renderöi todo-rivit propseina annetun datan pohjalta
@@ -25,8 +25,10 @@ const Todos = props => {
         <tr key={i}>
           <td>{i}</td>
           <td>{todo.content}</td>
-          <td onClick={() => handeleImportantToggle(todo.id)}>
-            {todo.important.toString()}
+          <td>
+            <button onClick={() => handeleImportantToggle(todo.id)}>
+              {todo.important.toString()}
+            </button>
           </td>
           <td>
             <button onClick={() => handleDeleteClick(todo.id)}> delete</button>
@@ -45,6 +47,7 @@ const Todos = props => {
             <th>#</th>
             <th>Todo</th>
             <th>Important</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{maketodoRows()}</tbody>
