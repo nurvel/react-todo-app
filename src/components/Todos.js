@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { updateTodoDone, loadTodos } from "../store/todos/todoReducer";
+
 import { updateTodo, deleteTodo } from "../services/todoService";
 
 const Todos = props => {
@@ -14,12 +18,12 @@ const Todos = props => {
     props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
   };
 
-  const handeleDoneToggle = async id => {
-    const todo = props.todos.find(t => t.id === id);
-    const todoToChange = { ...todo, done: !todo.done };
-    await updateTodo(todoToChange); // muutos serverille
-    props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
-  };
+  // const handeleDoneToggle = async id => {
+  //   const todo = props.todos.find(t => t.id === id);
+  //   const todoToChange = { ...todo, done: !todo.done };
+  //   await updateTodo(todoToChange); // muutos serverille
+  //   props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
+  // };
 
   const handeFilter = todo => {
     if (!props.filter.showImportant && todo.important) return false;
@@ -37,7 +41,7 @@ const Todos = props => {
           style={todo.done ? { textDecoration: "line-through" } : null}
         >
           <td>{i}</td>
-          <td onClick={() => handeleDoneToggle(todo.id)}>{todo.content}</td>
+          <td onClick={() => props.updateTodoDone(todo)}>{todo.content}</td>
           <td>
             <button onClick={() => handeleImportantToggle(todo.id)}>
               {todo.important.toString()}
@@ -69,4 +73,16 @@ const Todos = props => {
   );
 };
 
-export default Todos;
+const mapStateToProps = state => {
+  console.log("Todos state", state);
+  return {
+    todos: state.todos
+  };
+};
+
+const mapDispatchToProps = {
+  loadTodos,
+  updateTodoDone
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);

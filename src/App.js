@@ -34,7 +34,7 @@ function App(props) {
       <h1>Redux todo app</h1>
       <NewTodo todos={props.todos} setTodos={setTodos} />
       <Filter filter={filter} setFilter={setFilter} />
-      <Todos todos={props.todos} setTodos={setTodos} filter={filter} />
+      <Todos setTodos={setTodos} filter={filter} />
     </div>
   );
 }

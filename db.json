@@ -2,7 +2,7 @@
   "todos": [
     {
       "content": "You gotta do what you gotta do",
-      "done": false,
+      "done": true,
       "important": false,
       "id": 5
     },
