@@ -2,7 +2,7 @@
   "todos": [
     {
       "content": "Päivitä cinode",
-      "done": true,
+      "done": false,
       "important": false,
       "id": 6
     },

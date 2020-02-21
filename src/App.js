@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import NewTodo from "./components/NewTodo";
@@ -10,7 +10,7 @@ import { loadTodos } from "./store/todos/todoReducer";
 function App(props) {
   useEffect(() => {
     props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
-  }, []);
+  }, [props]);
 
   return (
     <div>
