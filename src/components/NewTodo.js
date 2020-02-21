@@ -8,9 +8,10 @@ const NewNote = props => {
       content: event.target.todo.value,
       important: event.target.important.checked
     };
-    await addTodo(todoItem);
+    const savedTodo = await addTodo(todoItem);
     document.getElementById("todoForm").reset();
-    props.refreshTodos();
+    props.setTodos([...props.todos, savedTodo]);
+    // props.refreshTodos();
   };
 
   return (

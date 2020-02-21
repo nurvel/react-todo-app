@@ -22,8 +22,8 @@ function App() {
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo refreshTodos={refreshTodos} />
-      <Todos todos={todos} r />
+      <NewTodo todos={todos} setTodos={setTodos} />
+      <Todos todos={todos} setTodos={setTodos} />
       <Filter />
     </div>
   );
