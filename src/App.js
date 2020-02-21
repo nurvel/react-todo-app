@@ -10,18 +10,20 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
+    refreshTodos();
+  }, []);
+
+  const refreshTodos = () => {
     getTodos()
       .then(t => setTodos(t))
       .catch(err => console.log(err));
-  }, []);
-
-  console.log(todos);
+  };
 
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo />
-      <Todos todos={todos} />
+      <NewTodo refreshTodos={refreshTodos} />
+      <Todos todos={todos} r />
       <Filter />
     </div>
   );

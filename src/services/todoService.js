@@ -7,4 +7,9 @@ export const getTodos = async () => {
   return response.data;
 };
 
+export const addTodo = async todoItem => {
+  const response = await axios.post(url, todoItem);
+  console.log(response);
+};
+
 // export default { getTodos };

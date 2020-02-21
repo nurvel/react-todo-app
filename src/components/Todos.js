@@ -2,13 +2,12 @@ import React from "react";
 // import { connect } from "react-redux";
 
 const Todos = props => {
+
+  // renderöi todo rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
-    //const { todos } = this.props;
     return props.todos.map((todo, i) => {
-      console.log(todo);
-      console.log("TODOD", props.todos);
       return (
-        <tr key={i}>
+        <tr key={i}> 
           <td>{i}</td>
           <td>{todo.content}</td>
           <td>{todo.important.toString()}</td>
