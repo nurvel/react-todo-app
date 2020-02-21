@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-import { updateTodoDone, loadTodos } from "../store/todos/todoReducer";
-
-import { updateTodo, deleteTodo } from "../services/todoService";
+import {
+  deleteTodo,
+  updateTodoImportant,
+  updateTodoDone,
+  loadTodos
+} from "../store/todos/todoReducer";
 
 const Todos = props => {
-
-
-  const handeleImportantToggle = async id => {
-    const todo = props.todos.find(t => t.id === id);
-    const todoToChange = { ...todo, important: !todo.important };
-    await updateTodo(todoToChange); // muutos serverille
-    props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
-  };
-
-  const handleDeleteClick = async id => {
-    await deleteTodo(id); // muutos serverille
-    props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
-  };
-
   const handeFilter = todo => {
-    if (!props.filter.showImportant && todo.important) return false;
+    if (!props.filter.showImportant && !todo.important) return false;
     if (!props.filter.showDone && todo.done) return false;
     return true;
   };
@@ -38,12 +27,12 @@ const Todos = props => {
           <td>{i}</td>
           <td onClick={() => props.updateTodoDone(todo)}>{todo.content}</td>
           <td>
-            <button onClick={() => handeleImportantToggle(todo.id)}>
+            <button onClick={() => props.updateTodoImportant(todo)}>
               {todo.important.toString()}
             </button>
           </td>
           <td>
-            <button onClick={() => handleDeleteClick(todo.id)}> delete</button>
+            <button onClick={() => props.deleteTodo(todo)}> delete</button>
           </td>
         </tr>
       );
@@ -77,7 +66,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loadTodos,
-  updateTodoDone
+  updateTodoDone,
+  updateTodoImportant,
+  deleteTodo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

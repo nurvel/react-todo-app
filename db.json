@@ -9,11 +9,11 @@
     {
       "content": "Päivitä cinode",
       "done": false,
-      "important": true,
+      "important": false,
       "id": 6
     },
     {
-      "content": "Jee, eka redux todo",
+      "content": "Update Cinode",
       "done": false,
       "important": true,
       "id": 7
