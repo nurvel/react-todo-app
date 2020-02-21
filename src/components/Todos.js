@@ -6,7 +6,7 @@ import {
   updateTodoImportant,
   updateTodoDone,
   loadTodos
-} from "../store/todos/todoReducer";
+} from "../store/todos/todoActions";
 
 const Todos = props => {
   const handeFilter = todo => {

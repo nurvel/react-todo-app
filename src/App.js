@@ -5,7 +5,7 @@ import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
 import Filter from "./components/Filter";
 
-import { loadTodos } from "./store/todos/todoReducer";
+import { loadTodos } from "./store/todos/todoActions";
 
 function App(props) {
   useEffect(() => {
