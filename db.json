@@ -1,9 +1,16 @@
 {
   "todos": [
     {
-      "content": "Uusi",
+      "content": "You gotta do what you gotta do",
+      "done": false,
       "important": false,
-      "id": 1
+      "id": 5
+    },
+    {
+      "content": "Päivitä cinode",
+      "done": false,
+      "important": true,
+      "id": 6
     }
   ]
 }

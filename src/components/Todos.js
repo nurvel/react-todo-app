@@ -1,11 +1,11 @@
 import React from "react";
-import { toggleImportant, deleteTodo } from "../services/todoService";
+import { updateTodo, deleteTodo } from "../services/todoService";
 
 const Todos = props => {
   const handeleImportantToggle = async id => {
     const todo = props.todos.find(t => t.id === id);
     const todoToChange = { ...todo, important: !todo.important };
-    await toggleImportant(todoToChange); // muutos serverille
+    await updateTodo(todoToChange); // muutos serverille
     props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
   };
 
@@ -14,13 +14,30 @@ const Todos = props => {
     props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
   };
 
+  const handeleDoneToggle = async id => {
+    const todo = props.todos.find(t => t.id === id);
+    const todoToChange = { ...todo, done: !todo.done };
+    await updateTodo(todoToChange); // muutos serverille
+    props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
+  };
+
+  const handeFilter = todo => {
+    if (!props.filter.showImportant && todo.important) return false;
+    if (!props.filter.showDone && todo.done) return false;
+    return true;
+  };
+
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
-    return props.todos.map((todo, i) => {
+    return props.todos.filter(handeFilter).map((todo, i) => {
       return (
-        <tr key={i}>
+        <tr
+          key={i}
+          id={i}
+          style={todo.done ? { textDecoration: "line-through" } : null}
+        >
           <td>{i}</td>
-          <td>{todo.content}</td>
+          <td onClick={() => handeleDoneToggle(todo.id)}>{todo.content}</td>
           <td>
             <button onClick={() => handeleImportantToggle(todo.id)}>
               {todo.important.toString()}
@@ -36,7 +53,7 @@ const Todos = props => {
 
   return (
     <div>
-      <h2>Todos</h2>
+      <h3>Your todos</h3>
       <table>
         <thead>
           <tr>

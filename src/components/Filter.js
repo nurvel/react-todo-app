@@ -18,7 +18,7 @@ const Filter = props => {
 
   return (
     <div>
-      <h2>What do you want to see</h2>
+      <h3>Filter todos</h3>
       <div>
         <button onClick={toggleShowingImportant}>
           {props.filter.showImportant.toString()}

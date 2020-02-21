@@ -6,6 +6,7 @@ const NewNote = props => {
     event.preventDefault();
     const todoItem = {
       content: event.target.todo.value,
+      done: false,
       important: event.target.important.checked
     };
     const savedTodo = await addTodo(todoItem);
@@ -15,11 +16,14 @@ const NewNote = props => {
   };
 
   return (
-    <form id="todoForm" onSubmit={handleNewTodo}>
-      What you gotta do? <input name="todo" />
-      Is it important? <input type="checkbox" name="important" />
-      <button type="submit">Add todo</button>
-    </form>
+    <div>
+      <h3>New todo</h3>
+      <form id="todoForm" onSubmit={handleNewTodo}>
+        What you gotta do? <input name="todo" />
+        Is it important? <input type="checkbox" name="important" />
+        <button type="submit">Add todo</button>
+      </form>
+    </div>
   );
 };
 

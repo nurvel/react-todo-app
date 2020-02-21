@@ -29,8 +29,8 @@ function App() {
     <div>
       <h1>Redux todo app</h1>
       <NewTodo todos={todos} setTodos={setTodos} />
-      <Todos todos={todos} setTodos={setTodos} />
       <Filter filter={filter} setFilter={setFilter} />
+      <Todos todos={todos} setTodos={setTodos} filter={filter}/>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const addTodo = async todoItem => {
   return response.data;
 };
 
-export const toggleImportant = async todoToChange => {
+export const updateTodo = async todoToChange => {
   const urlOfUpdate = url + `/${todoToChange.id}`;
   const response = await axios.put(urlOfUpdate, todoToChange);
   console.log(response);
@@ -24,5 +24,6 @@ export const deleteTodo = async id => {
   const response = await axios.delete(urlOfDelete);
   console.log(response);
 };
+
 
 // export default { getTodos };
