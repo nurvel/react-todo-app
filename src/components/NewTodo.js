@@ -18,8 +18,8 @@ const NewNote = props => {
     <div>
       <h3>New todo</h3>
       <form id="todoForm" onSubmit={handleNewTodo}>
-        What you gotta do? <input name="todo" />
-        Is it important? <input type="checkbox" name="important" />
+        What you gotta do? <input name="todo" /> <br />
+        Check if important <input type="checkbox" name="important" /> <br />
         <button type="submit">Add todo</button>
       </form>
     </div>
