@@ -19,9 +19,10 @@ export const toggleImportant = async todoToChange => {
   console.log(response);
 };
 
-export const deleteTodo = async todoItem => {
-  // const response = await axios.post(url, todoItem);
-  // console.log(response);
+export const deleteTodo = async id => {
+  const urlOfDelete = url + `/${id}`;
+  const response = await axios.delete(urlOfDelete);
+  console.log(response);
 };
 
 // export default { getTodos };

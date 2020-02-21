@@ -1,6 +1,6 @@
 import React from "react";
 // import { connect } from "react-redux";
-import { toggleImportant } from "../services/todoService";
+import { toggleImportant, deleteTodo } from "../services/todoService";
 
 const Todos = props => {
   const handeleImportantToggle = async id => {
@@ -9,6 +9,13 @@ const Todos = props => {
     const todoToChange = { ...todo, important: !todo.important };
     await toggleImportant(todoToChange); // muutos serverille
     props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
+  };
+
+  const handleDeleteClick = async id => {
+    console.log(id);
+    //    const todo = props.todos.find(t => t.id === id);
+    await deleteTodo(id); // muutos serverille
+    props.setTodos(props.todos.filter(t => t.id !== id )); // muutetaan statea - ei ladata uusia serveriltä
   };
 
   // renderöi todo-rivit propseina annetun datan pohjalta
@@ -20,6 +27,9 @@ const Todos = props => {
           <td>{todo.content}</td>
           <td onClick={() => handeleImportantToggle(todo.id)}>
             {todo.important.toString()}
+          </td>
+          <td>
+            <button onClick={() => handleDeleteClick(todo.id)}> delete</button>
           </td>
         </tr>
       );

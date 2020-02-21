@@ -1,49 +1,19 @@
 {
   "todos": [
     {
-      "content": "You gotta do what you gotta do",
-      "important": true,
-      "id": 1
-    },
-    {
       "content": "Get milk and cookies",
       "important": false,
       "id": 2
     },
     {
-      "content": "Moikka",
-      "important": true,
-      "id": 3
-    },
-    {
-      "content": "Moikka",
-      "important": true,
-      "id": 4
-    },
-    {
       "content": "wwww",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
       "content": "asfasf",
       "important": false,
       "id": 6
-    },
-    {
-      "content": "asfasf",
-      "important": false,
-      "id": 7
-    },
-    {
-      "content": "saasf",
-      "important": false,
-      "id": 8
-    },
-    {
-      "content": "aaaa",
-      "important": false,
-      "id": 9
     },
     {
       "content": "aaaaaaa",
