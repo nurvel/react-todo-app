@@ -1,10 +1,8 @@
 import React from "react";
-// import { connect } from "react-redux";
 import { toggleImportant, deleteTodo } from "../services/todoService";
 
 const Todos = props => {
   const handeleImportantToggle = async id => {
-    console.log(id);
     const todo = props.todos.find(t => t.id === id);
     const todoToChange = { ...todo, important: !todo.important };
     await toggleImportant(todoToChange); // muutos serverille
@@ -12,8 +10,6 @@ const Todos = props => {
   };
 
   const handleDeleteClick = async id => {
-    console.log(id);
-    //    const todo = props.todos.find(t => t.id === id);
     await deleteTodo(id); // muutos serverille
     props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
   };

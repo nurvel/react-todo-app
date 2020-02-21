@@ -1,34 +1,9 @@
 {
   "todos": [
     {
-      "content": "Get milk and cookies",
+      "content": "Uusi",
       "important": false,
-      "id": 2
-    },
-    {
-      "content": "wwww",
-      "important": true,
-      "id": 5
-    },
-    {
-      "content": "asfasf",
-      "important": false,
-      "id": 6
-    },
-    {
-      "content": "Uusi Todo",
-      "important": false,
-      "id": 11
-    },
-    {
-      "content": "Vielä uusi todella pitkä todo verrattuna vahhoihin",
-      "important": false,
-      "id": 12
-    },
-    {
-      "content": "Ja vielä pukkaa tärkeää",
-      "important": true,
-      "id": 13
+      "id": 1
     }
   ]
 }

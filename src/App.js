@@ -6,8 +6,14 @@ import Filter from "./components/Filter";
 
 import { getTodos } from "./services/todoService";
 
+const initialFilterState = {
+  showImportant: true,
+  showDone: true
+};
+
 function App() {
   const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState(initialFilterState);
 
   useEffect(() => {
     refreshTodos();
@@ -24,7 +30,7 @@ function App() {
       <h1>Redux todo app</h1>
       <NewTodo todos={todos} setTodos={setTodos} />
       <Todos todos={todos} setTodos={setTodos} />
-      <Filter />
+      <Filter filter={filter} setFilter={setFilter} />
     </div>
   );
 }
