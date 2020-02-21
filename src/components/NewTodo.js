@@ -1,17 +1,22 @@
 import React from "react";
-import { addTodo } from "../services/todoService";
+import { connect } from "react-redux";
 
-const NewNote = props => {
-  const handleNewTodo = async event => {
+import { createNewTodo } from "../store/todos/todoReducer";
+
+//import { addTodo } from "../services/todoService";
+
+const NewTodo = props => {
+  const handleNewTodo = event => {
     event.preventDefault();
     const todoItem = {
       content: event.target.todo.value,
       done: false,
       important: event.target.important.checked
     };
-    const savedTodo = await addTodo(todoItem);
+    // const savedTodo = await addTodo(todoItem);
+    // props.setTodos([...props.todos, savedTodo]);
+    props.createNewTodo(todoItem);
     document.getElementById("todoForm").reset();
-    props.setTodos([...props.todos, savedTodo]);
   };
 
   return (
@@ -26,4 +31,10 @@ const NewNote = props => {
   );
 };
 
-export default NewNote;
+const mapDispatchToProps = {
+  createNewTodo
+};
+
+export default connect(null, mapDispatchToProps)(NewTodo);
+
+// export default NewNote;

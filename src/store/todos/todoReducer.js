@@ -6,6 +6,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_TODOS":
       return action.data;
+    case "ADD_TODO":
+      return [...state, action.data];
     case "UPDATE_TODO":
       return state.map(t => (t.id === action.data.id ? action.data : t));
     default:
@@ -15,10 +17,20 @@ const reducer = (state = initialState, action) => {
 
 export const loadTodos = () => {
   return async dispatch => {
-    const blogs = await todoService.getTodos();
+    const todos = await todoService.getTodos();
     dispatch({
       type: "LOAD_TODOS",
-      data: blogs
+      data: todos
+    });
+  };
+};
+
+export const createNewTodo = todo => {
+  return async dispatch => {
+    const newTodo = await todoService.addTodo(todo);
+    dispatch({
+      type: "ADD_TODO",
+      data: newTodo
     });
   };
 };

@@ -11,6 +11,12 @@
       "done": false,
       "important": true,
       "id": 6
+    },
+    {
+      "content": "Jee, eka redux todo",
+      "done": false,
+      "important": true,
+      "id": 7
     }
   ]
 }

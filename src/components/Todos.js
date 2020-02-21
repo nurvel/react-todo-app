@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { updateTodoDone, loadTodos } from "../store/todos/todoReducer";
@@ -6,6 +6,8 @@ import { updateTodoDone, loadTodos } from "../store/todos/todoReducer";
 import { updateTodo, deleteTodo } from "../services/todoService";
 
 const Todos = props => {
+
+
   const handeleImportantToggle = async id => {
     const todo = props.todos.find(t => t.id === id);
     const todoToChange = { ...todo, important: !todo.important };
@@ -17,13 +19,6 @@ const Todos = props => {
     await deleteTodo(id); // muutos serverille
     props.setTodos(props.todos.filter(t => t.id !== id)); // muutetaan statea - ei ladata uusia serveriltä
   };
-
-  // const handeleDoneToggle = async id => {
-  //   const todo = props.todos.find(t => t.id === id);
-  //   const todoToChange = { ...todo, done: !todo.done };
-  //   await updateTodo(todoToChange); // muutos serverille
-  //   props.setTodos(props.todos.map(t => (t.id === id ? todoToChange : t))); // muutetaan statea - ei ladata uusia serveriltä
-  // };
 
   const handeFilter = todo => {
     if (!props.filter.showImportant && todo.important) return false;

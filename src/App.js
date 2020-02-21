@@ -7,8 +7,6 @@ import Filter from "./components/Filter";
 
 import { loadTodos } from "./store/todos/todoReducer";
 
-// import { getTodos } from "./services/todoService";
-
 const initialFilterState = {
   showImportant: true,
   showDone: true
@@ -20,34 +18,20 @@ function App(props) {
 
   useEffect(() => {
     props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
-    //refreshTodos();
   }, []);
-
-  // const refreshTodos = () => {
-  //   getTodos()
-  //     .then(t => setTodos(t))
-  //     .catch(err => console.log(err));
-  // };
 
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo todos={props.todos} setTodos={setTodos} />
+      <NewTodo />
       <Filter filter={filter} setFilter={setFilter} />
       <Todos setTodos={setTodos} filter={filter} />
     </div>
   );
 }
 
-const mapStateToProps = state => {
-  console.log("App state", state);
-  return {
-    todos: state.todos
-  };
-};
-
 const mapDispatchToProps = {
   loadTodos
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
