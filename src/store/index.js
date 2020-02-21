@@ -3,20 +3,14 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import todoReducer from "./todos/todoReducer";
-// import notificationReducer from './reducers/notificationReducer'
-// import loginReducer from './reducers/loginReducer'
-// import userReducer from './reducers/userReducer'
+import todoFilter from "./filter/filterReducer";
 
 const reducer = combineReducers({
-  todos: todoReducer
-  //   notification: notificationReducer,
-  //   user: loginReducer,
-  //   userlist: userReducer
+  todos: todoReducer,
+  filter: todoFilter
 });
 
 export const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
-
-// export default store;

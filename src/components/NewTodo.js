@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 
 import { createNewTodo } from "../store/todos/todoReducer";
 
-//import { addTodo } from "../services/todoService";
-
 const NewTodo = props => {
   const handleNewTodo = event => {
     event.preventDefault();
@@ -13,8 +11,6 @@ const NewTodo = props => {
       done: false,
       important: event.target.important.checked
     };
-    // const savedTodo = await addTodo(todoItem);
-    // props.setTodos([...props.todos, savedTodo]);
     props.createNewTodo(todoItem);
     document.getElementById("todoForm").reset();
   };

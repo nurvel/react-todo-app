@@ -60,7 +60,8 @@ const Todos = props => {
 const mapStateToProps = state => {
   console.log("Todos state", state);
   return {
-    todos: state.todos
+    todos: state.todos,
+    filter: state.filter
   };
 };
 

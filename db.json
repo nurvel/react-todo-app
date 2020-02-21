@@ -1,19 +1,13 @@
 {
   "todos": [
     {
-      "content": "You gotta do what you gotta do",
-      "done": true,
-      "important": false,
-      "id": 5
-    },
-    {
       "content": "Päivitä cinode",
-      "done": false,
+      "done": true,
       "important": false,
       "id": 6
     },
     {
-      "content": "Update Cinode",
+      "content": "Gotta do what you gotta do",
       "done": false,
       "important": true,
       "id": 7

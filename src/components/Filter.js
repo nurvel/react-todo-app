@@ -1,30 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import {
+  toggleShowImportant,
+  toggleShowDone
+} from "../store/filter/filterReducer";
 
 const Filter = props => {
-  const toggleShowingImportant = () => {
-    props.setFilter({
-      ...props.filter,
-      showImportant: !props.filter.showImportant
-    });
-  };
-
-  const toggleShowingDone = () => {
-    props.setFilter({
-      ...props.filter,
-      showDone: !props.filter.showDone
-    });
-  };
-
   return (
     <div>
       <h3>Filter todos</h3>
       <div>
-        <button onClick={toggleShowingImportant}>
+        <button onClick={() => props.toggleShowImportant(props.filter)}>
           {(!props.filter.showImportant).toString()}
         </button>{" "}
         Show only important
         <br />
-        <button onClick={toggleShowingDone}>
+        <button onClick={() => props.toggleShowDone(props.filter)}>
           {props.filter.showDone.toString()}
         </button>{" "}
         Show done
@@ -34,4 +26,16 @@ const Filter = props => {
   );
 };
 
-export default Filter;
+const mapStateToProps = state => {
+  console.log("Filters state", state);
+  return {
+    filter: state.filter
+  };
+};
+
+const mapDispatchToProps = {
+  toggleShowImportant,
+  toggleShowDone
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
