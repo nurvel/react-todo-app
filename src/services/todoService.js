@@ -24,6 +24,3 @@ export const deleteTodo = async id => {
   const response = await axios.delete(urlOfDelete);
   console.log(response);
 };
-
-
-// export default { getTodos };

@@ -58,9 +58,9 @@ const Todos = props => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Todo</th>
+            <th>Todo (click to set done)</th>
             <th>Important</th>
-            <th></th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>{maketodoRows()}</tbody>

@@ -12,7 +12,6 @@ const NewNote = props => {
     const savedTodo = await addTodo(todoItem);
     document.getElementById("todoForm").reset();
     props.setTodos([...props.todos, savedTodo]);
-    // props.refreshTodos();
   };
 
   return (
