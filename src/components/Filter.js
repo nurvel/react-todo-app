@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   toggleShowImportant,
   toggleShowDone
-} from "../store/filter/filterReducer";
+} from "../store/filter/filterActions";
 
 const Filter = props => {
   return (
