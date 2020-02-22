@@ -1,16 +1,27 @@
 import todoService from "../../services/todoService";
+import { Todo } from "./todoType";
+import { AppActions, AppState } from "../index";
+import { Dispatch } from "redux";
+
+import { SET_TODOS, ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./todoType";
+
+export const setTodos = (todos: Todo[]): AppActions => ({
+  type: SET_TODOS,
+  todos
+});
 
 export const loadTodos = () => {
-  return async dispatch => {
-    const todos = await todoService.getTodos();
-    dispatch({
-      type: "LOAD_TODOS",
-      data: todos
-    });
+  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+    const todos: Todo[] = await todoService.getTodos();
+    dispatch(setTodos(todos));
+    // dispatch({
+    //   type: LOAD_TODOS,
+    //   todos: todos
+    // })
   };
 };
 
-export const createNewTodo = todo => {
+export const createNewTodo = (todo: Todo) => {
   return async dispatch => {
     const newTodo = await todoService.addTodo(todo);
     dispatch({
@@ -20,7 +31,7 @@ export const createNewTodo = todo => {
   };
 };
 
-export const deleteTodo = todo => {
+export const deleteTodo = (todo: Todo) => {
   return async dispatch => {
     await todoService.deleteTodo(todo.id);
     dispatch({
@@ -30,7 +41,7 @@ export const deleteTodo = todo => {
   };
 };
 
-export const updateTodoDone = todo => {
+export const updateTodoDone = (todo: Todo) => {
   return async dispatch => {
     const updatedTodo = { ...todo, done: !todo.done };
     await todoService.updateTodo(updatedTodo);
@@ -41,7 +52,7 @@ export const updateTodoDone = todo => {
   };
 };
 
-export const updateTodoImportant = todo => {
+export const updateTodoImportant = (todo: Todo) => {
   return async dispatch => {
     const updatedTodo = { ...todo, important: !todo.important };
     await todoService.updateTodo(updatedTodo);

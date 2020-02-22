@@ -1,9 +1,11 @@
-const initialState = [];
+import { Todo, TodoActionTypes } from "./todoType";
 
-const reducer = (state = initialState, action) => {
+const initialState: Todo[] = [];
+
+const reducer = (state = initialState, action: TodoActionTypes): Todo[] => {
   switch (action.type) {
-    case "LOAD_TODOS":
-      return action.data;
+    case "SET_TODOS":
+      return [...action.todos];
     case "ADD_TODO":
       return [...state, action.data];
     case "UPDATE_TODO":

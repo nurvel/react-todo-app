@@ -7,7 +7,7 @@ import Filter from "./components/Filter";
 
 import { loadTodos } from "./store/todos/todoActions";
 
-function App(props) {
+const App = props => {
   useEffect(() => {
     props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
   }, [props]);
