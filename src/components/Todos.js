@@ -1,17 +1,27 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   deleteTodo,
   updateTodoImportant,
-  updateTodoDone,
-  loadTodos
+  updateTodoDone
 } from "../store/todos/todoActions";
 
 const Todos = props => {
-  // renderöi todo-rivit propseina annetun datan pohjalta
+  const todosToShow = ({ todos, filter }) => {
+    const filterConstaints = todo => {
+      if (!filter.showImportant && !todo.important) return false;
+      if (!filter.showDone && todo.done) return false;
+      return true;
+    };
+    return todos.filter(filterConstaints);
+  };
+
+  const todos = useSelector(state => todosToShow(state));
+  const dispatch = useDispatch();
+
   const maketodoRows = () => {
-    return props.todos.map((todo, i) => {
+    return todos.map((todo, i) => {
       return (
         <tr
           key={i}
@@ -19,14 +29,14 @@ const Todos = props => {
           style={todo.done ? { textDecoration: "line-through" } : null}
         >
           <td>{i}</td>
-          <td onClick={() => props.updateTodoDone(todo)}>{todo.content}</td>
+          <td onClick={() => dispatch(updateTodoDone(todo))}>{todo.content}</td>
           <td>
-            <button onClick={() => props.updateTodoImportant(todo)}>
+            <button onClick={() => dispatch(updateTodoImportant(todo))}>
               {todo.important.toString()}
             </button>
           </td>
           <td>
-            <button onClick={() => props.deleteTodo(todo)}> delete</button>
+            <button onClick={() => dispatch(deleteTodo(todo))}> delete</button>
           </td>
         </tr>
       );
@@ -51,29 +61,4 @@ const Todos = props => {
   );
 };
 
-const todosToShow = ({ todos, filter }) => {
-  const filterConstaints = todo => {
-    if (!filter.showImportant && !todo.important) return false;
-    if (!filter.showDone && todo.done) return false;
-    return true;
-  };
-
-  return todos.filter(filterConstaints);
-};
-
-const mapStateToProps = state => {
-  console.log("Todos state", state);
-  return {
-    todos: todosToShow(state),
-    filter: state.filter
-  };
-};
-
-const mapDispatchToProps = {
-  loadTodos,
-  updateTodoDone,
-  updateTodoImportant,
-  deleteTodo
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default Todos;

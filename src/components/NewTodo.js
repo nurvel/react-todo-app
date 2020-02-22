@@ -1,9 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import { createNewTodo } from "../store/todos/todoActions";
 
 const NewTodo = props => {
+  const dispatch = useDispatch();
+
   const handleNewTodo = event => {
     event.preventDefault();
     const todoItem = {
@@ -11,7 +13,7 @@ const NewTodo = props => {
       done: false,
       important: event.target.important.checked
     };
-    props.createNewTodo(todoItem);
+    dispatch(createNewTodo(todoItem));
     document.getElementById("todoForm").reset();
   };
 
@@ -27,8 +29,4 @@ const NewTodo = props => {
   );
 };
 
-const mapDispatchToProps = {
-  createNewTodo
-};
-
-export default connect(null, mapDispatchToProps)(NewTodo);
+export default NewTodo;
