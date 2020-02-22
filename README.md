@@ -34,3 +34,12 @@ npm run server # start json-server to port 3001
 npm run start # start react app to port 3000
 ```
 
+
+
+## Nice sources
+s
+How to use Typescript with Redux
+https://www.youtube.com/watch?v=dZZxegovK9Q
+
+Redux ja hooks - more simple way to get a handle to state ja action creators in components than connect
+https://thoughtbot.com/blog/using-redux-with-react-hooks
