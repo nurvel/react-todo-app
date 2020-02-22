@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
 import {
   deleteTodo,
@@ -20,6 +20,14 @@ const Todos = props => {
   const { todos } = useSelector(state => ({
     todos: todosToShow(state)
   }));
+  // useaa statea hakiessa react saattaa uudelleen renderöidä liikaa > shallowEqual voi auttaa
+  // const { todos } = useSelector(
+  //   state => ({
+  //     todos: todosToShow(state)
+  //   }),
+  //   shallowEqual
+  // );
+
   const dispatch = useDispatch();
 
   const maketodoRows = () => {
