@@ -11,6 +11,7 @@ import { Todo } from "../store/todos/todoType";
 import { AppState, AppActions } from "../store/index";
 import { Dispatch, bindActionCreators } from "redux";
 import { ThunkDispatch } from "redux-thunk";
+import { Filter } from "../store/filter/filterType";
 
 /// ei käytössä, koska komponentilla ei ole omia propseja
 interface TodosProps {}
@@ -63,7 +64,7 @@ const Todos = (props: Props) => {
 // interfacet määrittää paluuarvot
 interface LinkStateProps {
   todos: Todo[];
-  filter: Filter; // TODO
+  filter: Filter;
 }
 interface LinkDispatchProps {
   loadTodos: () => void;
@@ -72,7 +73,6 @@ interface LinkDispatchProps {
   updateTodoImportant: (todo: Todo) => void;
 }
 
-// TODO: Fileri
 const todosToShow = (
   todos: Todo[],
   filter: { showImportant: any; showDone: any }
@@ -89,7 +89,7 @@ const todosToShow = (
 const mapStateToProps = (state: AppState, ownProps: TodosProps) => {
   return {
     todos: todosToShow(state.todos, state.filter),
-    filter: state.filter // TODO
+    filter: state.filter
   };
 };
 

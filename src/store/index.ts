@@ -6,6 +6,7 @@ import todoReducer from "./todos/todoReducer";
 import filterReducer from "./filter/filterReducer";
 
 import { TodoActionTypes } from "./todos/todoType";
+import { FilterActionTypes } from "./filter/filterType";
 
 const reducer = combineReducers({
   todos: todoReducer,
@@ -14,9 +15,11 @@ const reducer = combineReducers({
 
 export const store = createStore(
   reducer,
-  composeWithDevTools(applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>))
+  composeWithDevTools(
+    applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>)
+  )
 );
 
-export type AppState = ReturnType<typeof reducer>; // kokonaan recuerit - sourse of app state
+export type AppState = ReturnType<typeof reducer>; // kokonaan recuerit - sourse of truth to app state
 
-export type AppActions = TodoActionTypes; // | FIlterActionTypes;
+export type AppActions = TodoActionTypes | FilterActionTypes;
