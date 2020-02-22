@@ -10,6 +10,22 @@ export const setTodos = (todos: Todo[]): AppActions => ({
   todos
 });
 
+export const addTodo = (todo: Todo): AppActions => ({
+  type: ADD_TODO,
+  todo
+});
+
+export const deleteTodo = (todo: Todo): AppActions => ({
+  type: DELETE_TODO,
+  todo
+});
+
+export const updateTodo = (todo: Todo): AppActions => ({
+  type: UPDATE_TODO,
+  todo
+});
+
+// getState turha tässä, mutta esimerkkinä
 export const loadTodos = () => {
   return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
     const todos: Todo[] = await todoService.getTodos();
@@ -22,43 +38,32 @@ export const loadTodos = () => {
 };
 
 export const createNewTodo = (todo: Todo) => {
-  return async dispatch => {
-    const newTodo = await todoService.addTodo(todo);
-    dispatch({
-      type: "ADD_TODO",
-      data: newTodo
-    });
+  return async (dispatch: Dispatch<AppActions>) => {
+    const newTodo: Todo = await todoService.addTodo(todo);
+    dispatch(addTodo(newTodo));
   };
 };
 
-export const deleteTodo = (todo: Todo) => {
-  return async dispatch => {
+export const removeTodo = (todo: Todo) => {
+  return async (dispatch: Dispatch<AppActions>) => {
     await todoService.deleteTodo(todo.id);
-    dispatch({
-      type: "DELETE_TODO",
-      data: todo
-    });
+    dispatch(deleteTodo(todo));
   };
 };
 
+// HOX: Alla kaksi tapaa update todo - Important ja Done
 export const updateTodoDone = (todo: Todo) => {
-  return async dispatch => {
-    const updatedTodo = { ...todo, done: !todo.done };
+  return async (dispatch: Dispatch<AppActions>) => {
+    const updatedTodo: Todo = { ...todo, done: !todo.done };
     await todoService.updateTodo(updatedTodo);
-    dispatch({
-      type: "UPDATE_TODO",
-      data: updatedTodo
-    });
+    dispatch(updateTodo(updatedTodo));
   };
 };
 
 export const updateTodoImportant = (todo: Todo) => {
-  return async dispatch => {
+  return async (dispatch: Dispatch<AppActions>) => {
     const updatedTodo = { ...todo, important: !todo.important };
     await todoService.updateTodo(updatedTodo);
-    dispatch({
-      type: "UPDATE_TODO",
-      data: updatedTodo
-    });
+    dispatch(updateTodo(updatedTodo));
   };
 };

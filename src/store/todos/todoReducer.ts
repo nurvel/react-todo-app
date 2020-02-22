@@ -7,11 +7,11 @@ const reducer = (state = initialState, action: TodoActionTypes): Todo[] => {
     case "SET_TODOS":
       return [...action.todos];
     case "ADD_TODO":
-      return [...state, action.data];
+      return [...state, action.todo];
     case "UPDATE_TODO":
-      return state.map(t => (t.id === action.data.id ? action.data : t));
+      return state.map(t => (t.id === action.todo.id ? action.todo : t));
     case "DELETE_TODO":
-      return state.filter(t => t.id !== action.data.id);
+      return state.filter(t => t.id !== action.todo.id);
     default:
       return state;
   }
