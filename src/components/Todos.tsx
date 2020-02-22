@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -19,6 +19,10 @@ interface TodosState {}
 type Props = TodosProps & LinkStateProps & LinkDispatchProps;
 
 const Todos = (props: Props) => {
+  useEffect(() => {
+    props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
+  }, []);
+
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
     return props.todos.map((todo: Todo, i: number) => {
