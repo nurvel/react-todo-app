@@ -46,7 +46,7 @@ export const createNewTodo = (todo: Todo) => {
 
 export const removeTodo = (todo: Todo) => {
   return async (dispatch: Dispatch<AppActions>) => {
-    await todoService.deleteTodo(todo.id);
+    await todoService.deleteTodo(todo);
     dispatch(deleteTodo(todo));
   };
 };
