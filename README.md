@@ -20,5 +20,9 @@ npm run start # käynnistä app lokaalisti 3000
 
 - vanilla-react: vanilla react, ei reduxia, ei typescriptiä
 - redux: react, reduxissa state, ei typescriptiä
+- redux-hooks: reduxin useSelector ja useDispatch komponenteissa tilan & actioneiden importtaukseen
 - typescript:  react, redux, typescript
 
+## Hyviä juttuja
+How to use Typescript with Redux
+https://www.youtube.com/watch?v=dZZxegovK9Q
