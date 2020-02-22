@@ -15,7 +15,7 @@ interface FilterProps {}
 interface FilterState {}
 type Props = FilterProps & LinkStateProps & LinkDispatchProps;
 
-const Filter = (props: Props) => {
+const FilterComponent = (props: Props) => {
   return (
     <div>
       <h3>Filter todos</h3>
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>) => ({
   toggleShowDone: bindActionCreators(toggleShowDone, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterComponent);

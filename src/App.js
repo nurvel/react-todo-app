@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
-import Filter from "./components/Filter";
+import FilterComponent from "./components/FilterComponent";
 
 import { loadTodos } from "./store/todos/todoActions";
 
@@ -16,7 +16,7 @@ const App = props => {
     <div>
       <h1>Redux todo app</h1>
       <NewTodo />
-      <Filter />
+      <FilterComponent />
       <Todos />
     </div>
   );
