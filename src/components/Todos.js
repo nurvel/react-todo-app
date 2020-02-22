@@ -17,7 +17,9 @@ const Todos = props => {
     return todos.filter(filterConstaints);
   };
 
-  const todos = useSelector(state => todosToShow(state));
+  const { todos } = useSelector(state => ({
+    todos: todosToShow(state)
+  }));
   const dispatch = useDispatch();
 
   const maketodoRows = () => {
