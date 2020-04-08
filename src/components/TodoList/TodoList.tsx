@@ -1,10 +1,11 @@
 import React from "react";
 import { Todo } from "../../store/todos/todoType";
 import { Filter } from "../../store/filter/filterType";
+import TodoListStories from "./TodoList.stories";
 
-interface TodoListAttributes {
+export interface TodoListAttributes {
   todos: Todo[];
-  filter: Filter;
+  filter?: Filter;
   loadTodos: () => void;
   removeTodo: (todo: Todo) => void;
   updateTodoDone: (todo: Todo) => void;
@@ -27,7 +28,11 @@ const TodoList = (props: TodosProps) => {
   };
 
   const maketodoRows = () => {
-    const filteredTodos = todosToShow(props.todos, props.filter);
+    if (props.todos.length === 0) return null;
+
+    const filteredTodos = props.filter
+      ? todosToShow(props.todos, props.filter)
+      : props.todos;
 
     return filteredTodos.map((todo: Todo, i: number) => {
       return (
