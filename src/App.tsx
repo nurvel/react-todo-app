@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import NewTodo from "./components/NewTodo/NewTodo";
 import TodoList from "./components/TodoList/TodoList";
@@ -12,11 +12,22 @@ import {
 import { AppState, AppActions } from "./store";
 import { ThunkDispatch } from "redux-thunk";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import {
+  loadTodos,
+  updateTodoDone,
+  updateTodoImportant,
+  removeTodo,
+} from "./store/todos/todoActions";
 
 type AppProps = LinkStateProps & LinkDispatchProps;
 
 const App = (props: AppProps) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadTodos()); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Redux todo app</h1>
@@ -26,7 +37,14 @@ const App = (props: AppProps) => {
         toggleShowImportant={props.toggleShowImportant}
         toggleShowDone={props.toggleShowDone}
       />
-      <TodoList />
+      <TodoList
+        todos={props.todos}
+        filter={props.filter}
+        loadTodos={props.loadTodos}
+        removeTodo={props.removeTodo}
+        updateTodoDone={props.updateTodoDone}
+        updateTodoImportant={props.updateTodoImportant}
+      />
     </div>
   );
 };
@@ -39,6 +57,10 @@ interface LinkStateProps {
 interface LinkDispatchProps {
   toggleShowImportant: () => void;
   toggleShowDone: () => void;
+  loadTodos: () => void;
+  removeTodo: (todo: Todo) => void;
+  updateTodoDone: (todo: Todo) => void;
+  updateTodoImportant: (todo: Todo) => void;
 }
 
 const mapStateToProps = (state: AppState) => {
@@ -51,6 +73,10 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>) => ({
   toggleShowImportant: bindActionCreators(toggleShowImportant, dispatch),
   toggleShowDone: bindActionCreators(toggleShowDone, dispatch),
+  loadTodos: bindActionCreators(loadTodos, dispatch),
+  updateTodoDone: bindActionCreators(updateTodoDone, dispatch),
+  updateTodoImportant: bindActionCreators(updateTodoImportant, dispatch),
+  removeTodo: bindActionCreators(removeTodo, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,28 +1,30 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-
-import {
-  removeTodo,
-  updateTodoImportant,
-  updateTodoDone,
-  loadTodos,
-} from "../../store/todos/todoActions";
+import React from "react";
 import { Todo } from "../../store/todos/todoType";
-import { AppState, AppActions } from "../../store/index";
-import { bindActionCreators } from "redux";
-import { ThunkDispatch } from "redux-thunk";
 import { Filter } from "../../store/filter/filterType";
 
-/// ei käytössä, koska komponentilla ei ole omia propseja
-interface TodosProps {}
-interface TodosState {}
-type Props = TodosProps & LinkStateProps & LinkDispatchProps;
+interface TodoListAttributes {
+  todos: Todo[];
+  filter: Filter;
+  loadTodos: () => void;
+  removeTodo: (todo: Todo) => void;
+  updateTodoDone: (todo: Todo) => void;
+  updateTodoImportant: (todo: Todo) => void;
+}
+type TodosProps = TodoListAttributes;
 
-const TodoList = (props: Props) => {
-  useEffect(() => {
-    props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
-  }, [props]);
+const TodoList = (props: TodosProps) => {
+  const todosToShow = (
+    todos: Todo[],
+    filter: { showImportant: any; showDone: any }
+  ) => {
+    const filterConstaints = (todo: Todo) => {
+      if (!filter.showImportant && !todo.important) return false;
+      if (!filter.showDone && todo.done) return false;
+      return true;
+    };
 
+    return todos.filter(filterConstaints);
+  };
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
     return props.todos.map((todo: Todo, i: number) => {
@@ -65,46 +67,4 @@ const TodoList = (props: Props) => {
   );
 };
 
-// interfacet määrittää paluuarvot
-interface LinkStateProps {
-  todos: Todo[];
-  filter: Filter;
-}
-interface LinkDispatchProps {
-  loadTodos: () => void;
-  removeTodo: (todo: Todo) => void;
-  updateTodoDone: (todo: Todo) => void;
-  updateTodoImportant: (todo: Todo) => void;
-}
-
-const todosToShow = (
-  todos: Todo[],
-  filter: { showImportant: any; showDone: any }
-) => {
-  const filterConstaints = (todo: Todo) => {
-    if (!filter.showImportant && !todo.important) return false;
-    if (!filter.showDone && todo.done) return false;
-    return true;
-  };
-
-  return todos.filter(filterConstaints);
-};
-
-const mapStateToProps = (state: AppState, ownProps: TodosProps) => {
-  return {
-    todos: todosToShow(state.todos, state.filter),
-    filter: state.filter,
-  };
-};
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<any, any, AppActions>,
-  ownProps: TodosProps
-) => ({
-  loadTodos: bindActionCreators(loadTodos, dispatch),
-  updateTodoDone: bindActionCreators(updateTodoDone, dispatch),
-  updateTodoImportant: bindActionCreators(updateTodoImportant, dispatch),
-  removeTodo: bindActionCreators(removeTodo, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default TodoList;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Filter } from "../../store/filter/filterType";
-import { Todo } from "../../store/todos/todoType";
 
 interface FilterHandleAttributes {
   filter: Filter;
