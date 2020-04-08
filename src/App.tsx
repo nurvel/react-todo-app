@@ -18,6 +18,7 @@ import {
   updateTodoDone,
   updateTodoImportant,
   removeTodo,
+  createNewTodo,
 } from "./store/todos/todoActions";
 
 type AppProps = LinkStateProps & LinkDispatchProps;
@@ -31,7 +32,9 @@ const App = (props: AppProps) => {
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo />
+      <NewTodo
+        createNewTodo={createNewTodo}
+      />
       <FilterHandle
         filter={props.filter}
         toggleShowImportant={props.toggleShowImportant}
@@ -39,7 +42,7 @@ const App = (props: AppProps) => {
       />
       <TodoList
         todos={props.todos}
-        filter={props.filter} // TODO: extract filtering from TodoList component
+        filter={props.filter} // TODO: extract filtering from TodoList component?
         loadTodos={props.loadTodos}
         removeTodo={props.removeTodo}
         updateTodoDone={props.updateTodoDone}
@@ -77,6 +80,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>) => ({
   updateTodoDone: bindActionCreators(updateTodoDone, dispatch),
   updateTodoImportant: bindActionCreators(updateTodoImportant, dispatch),
   removeTodo: bindActionCreators(removeTodo, dispatch),
+  createNewTodo: bindActionCreators(createNewTodo, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
