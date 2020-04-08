@@ -16,9 +16,7 @@ const getProps = () => {
   return props;
 };
 
-// export const TodoListWithoutProps = () => <TodoList />;
-
-export const WithDynamicKnobs = () => {
+export const Basic = () => {
   const props = getProps();
   return <NewTodo {...props} />;
 };

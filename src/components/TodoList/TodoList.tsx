@@ -1,7 +1,7 @@
 import React from "react";
 import { Todo } from "../../store/todos/todoType";
 import { Filter } from "../../store/filter/filterType";
-import TodoListStories from "./TodoList.stories";
+import TodoItem from "../TodoItem/TodoItem";
 
 export interface TodoListAttributes {
   todos: Todo[];
@@ -35,22 +35,12 @@ const TodoList = (props: TodosProps) => {
 
     return filteredTodos.map((todo: Todo, i: number) => {
       return (
-        <tr
-          key={i}
-          id={i.toString()}
-          style={todo.done ? { textDecoration: "line-through" } : undefined}
-        >
-          <td>{i}</td>
-          <td onClick={() => props.updateTodoDone(todo)}>{todo.content}</td>
-          <td>
-            <button onClick={() => props.updateTodoImportant(todo)}>
-              {todo.important.toString()}
-            </button>
-          </td>
-          <td>
-            <button onClick={() => props.removeTodo(todo)}> delete</button>
-          </td>
-        </tr>
+        <TodoItem
+          todo={todo}
+          removeTodo={props.removeTodo}
+          updateTodoDone={props.updateTodoDone}
+          updateTodoImportant={props.updateTodoImportant}
+        />
       );
     });
   };
