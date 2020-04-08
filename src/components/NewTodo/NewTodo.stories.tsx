@@ -4,7 +4,7 @@ import NewTodo from "./NewTodo";
 import { NewTodoAttributes } from "./NewTodo";
 
 export default {
-  title: "NewTodo Component",
+  title: "NewTodo",
   decorators: [withKnobs],
 };
 

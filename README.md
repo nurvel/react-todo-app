@@ -14,6 +14,7 @@ This React Todo App is created to clarify the structure and functionalities betw
 | ts-react-redux       | implemented typesript |
 | js-react-redux-hooks | connect CHANGED to useSelector & dispatch as handle to state in components |
 | ts-react-redux-hooks | NOT DONE: the combination of two above
+| ts-react-redux-storybook | Added storybook
 
 ## FUNCTIONALITIES
 - Save a todo item  (description, important(y/n))
@@ -32,6 +33,7 @@ Start the local json-server in other prompt and react app in other
 npm install # first things first
 npm run server # start json-server to port 3001
 npm run start # start react app to port 3000
+npm run storybook # start storybook to port 9009
 ```
 
 

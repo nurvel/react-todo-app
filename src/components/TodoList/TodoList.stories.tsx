@@ -5,15 +5,15 @@ import TodoList from "./TodoList";
 import { TodoListAttributes } from "./TodoList";
 
 export default {
-  title: "TodoList Component",
+  title: "TodoList",
   decorators: [withKnobs],
 };
 
 const todoData = getTodoData();
 
 const todosOptions: any = {
-  withoutTodos: [],
-  withTodos: todoData,
+  without_Todos: [],
+  with_4_Todos: todoData,
 };
 
 const getProps = () => {
@@ -35,8 +35,6 @@ const getProps = () => {
 
   return props;
 };
-
-// export const TodoListWithoutProps = () => <TodoList />;
 
 export const WithDynamicKnobs = () => {
   const props = getProps();

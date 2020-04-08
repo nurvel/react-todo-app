@@ -4,7 +4,7 @@ import FilterHandle from "./FilterHandle";
 import { FilterHandleAttributes } from "./FilterHandle";
 
 export default {
-  title: "FilterHandle Component",
+  title: "FilterHandle",
   decorators: [withKnobs],
 };
 
