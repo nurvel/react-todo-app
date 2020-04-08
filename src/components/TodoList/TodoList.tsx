@@ -25,9 +25,11 @@ const TodoList = (props: TodosProps) => {
 
     return todos.filter(filterConstaints);
   };
-  // renderöi todo-rivit propseina annetun datan pohjalta
+
   const maketodoRows = () => {
-    return props.todos.map((todo: Todo, i: number) => {
+    const filteredTodos = todosToShow(props.todos, props.filter);
+
+    return filteredTodos.map((todo: Todo, i: number) => {
       return (
         <tr
           key={i}

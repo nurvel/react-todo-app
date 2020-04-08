@@ -25,7 +25,7 @@ type AppProps = LinkStateProps & LinkDispatchProps;
 const App = (props: AppProps) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadTodos()); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
+    dispatch(loadTodos());
   }, [dispatch]);
 
   return (
@@ -39,7 +39,7 @@ const App = (props: AppProps) => {
       />
       <TodoList
         todos={props.todos}
-        filter={props.filter}
+        filter={props.filter} // TODO: extract filtering from TodoList component
         loadTodos={props.loadTodos}
         removeTodo={props.removeTodo}
         updateTodoDone={props.updateTodoDone}
