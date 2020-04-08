@@ -1,41 +1,30 @@
 import React from "react";
-import { withKnobs, select, radios } from "@storybook/addon-knobs";
+import { withKnobs, select, boolean } from "@storybook/addon-knobs";
 import { getTodoData } from "../../common/index";
 import TodoList from "./TodoList";
 import { TodoListAttributes } from "./TodoList";
-// import { SelectTypeOptionsProp } from "@storybook/addon-knobs/dist/components/types";
 
 export default {
-  title: "Todo List Component",
+  title: "TodoList Component",
   decorators: [withKnobs],
 };
 
 const todoData = getTodoData();
 
-const todosOptions = {
-  withoutTodos: undefined,
+const todosOptions: any = {
+  withoutTodos: [],
   withTodos: todoData,
 };
 
-const filterOptions = {
-  true: true,
-  false: false,
-};
-
-// const helloOptions: SelectTypeOptionsProp = ["Moikka", "Heippa"];
-
-// export const TodoListWithoutProps = () => <TodoList />;
-
-export const PersonListWithKnobs = () => {
+const getProps = () => {
   const todos = select("Todo data", todosOptions, todosOptions.withTodos);
 
-  const showImportant = radios("Show important", filterOptions, true);
-  const showDone = radios("Show done", filterOptions, true);
+  const showImportant = boolean("Show important", true);
+  const showDone = boolean("Show done", true);
   const filter = {
     showImportant,
     showDone,
   };
-
   const props: TodoListAttributes = {
     todos,
     filter,
@@ -44,5 +33,12 @@ export const PersonListWithKnobs = () => {
     updateTodoImportant: () => {},
   };
 
+  return props;
+};
+
+// export const TodoListWithoutProps = () => <TodoList />;
+
+export const WithDynamicKnobs = () => {
+  const props = getProps();
   return <TodoList {...props} />;
 };

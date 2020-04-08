@@ -43,7 +43,6 @@ const App = (props: AppProps) => {
       <TodoList
         todos={props.todos}
         filter={props.filter} // TODO: extract filtering from TodoList component?
-        loadTodos={props.loadTodos}
         removeTodo={props.removeTodo}
         updateTodoDone={props.updateTodoDone}
         updateTodoImportant={props.updateTodoImportant}

@@ -1,25 +1,17 @@
 import React from "react";
-import { withKnobs, radios } from "@storybook/addon-knobs";
+import { withKnobs, radios, boolean } from "@storybook/addon-knobs";
 import FilterHandle from "./FilterHandle";
 import { FilterHandleAttributes } from "./FilterHandle";
 // import { SelectTypeOptionsProp } from "@storybook/addon-knobs/dist/components/types";
 
 export default {
-  title: "Filter Handle Component",
+  title: "FilterHandle Component",
   decorators: [withKnobs],
 };
 
-const filterOptions = {
-  true: true,
-  false: false,
-};
-
-// const helloOptions: SelectTypeOptionsProp = ["Moikka", "Heippa"];
-// export const TodoListWithoutProps = () => <TodoList />;
-
-export const FilterHandleWithKnobs = () => {
-  const showImportant = radios("Show important", filterOptions, true);
-  const showDone = radios("Show done", filterOptions, true);
+const getProps = () => {
+  const showImportant = boolean("Show important", true);
+  const showDone = boolean("Show done", true);
   const filter = {
     showImportant,
     showDone,
@@ -28,8 +20,13 @@ export const FilterHandleWithKnobs = () => {
   const props: FilterHandleAttributes = {
     filter,
     toggleShowImportant: () => {},
-    toggleShowDone: () => {}
+    toggleShowDone: () => {},
   };
 
+  return props;
+};
+
+export const WithDynamicKnobs = () => {
+  const props = getProps();
   return <FilterHandle {...props} />;
 };
