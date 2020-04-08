@@ -1,7 +1,7 @@
 import React from "react";
 import { Todo } from "../../store/todos/todoType";
 
-interface NewTodoAttributes {
+export interface NewTodoAttributes {
   createNewTodo: (todo: Todo) => void;
 }
 

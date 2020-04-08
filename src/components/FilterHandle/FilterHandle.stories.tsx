@@ -1,8 +1,7 @@
 import React from "react";
-import { withKnobs, radios, boolean } from "@storybook/addon-knobs";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import FilterHandle from "./FilterHandle";
 import { FilterHandleAttributes } from "./FilterHandle";
-// import { SelectTypeOptionsProp } from "@storybook/addon-knobs/dist/components/types";
 
 export default {
   title: "FilterHandle Component",

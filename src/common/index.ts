@@ -1,5 +1,7 @@
 const todoTestData = require("../mocs/todo-test-data.json");
 
+
+/* UTILS & GENERAL */
 export interface Todo {
   content: string;
   done: boolean;
@@ -8,6 +10,7 @@ export interface Todo {
 }
 
 /* TESTDATA HANDLES */
+
 export const getTodoData = (): Todo[] => {
   return todoTestData.todos;
 };

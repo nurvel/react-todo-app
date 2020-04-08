@@ -20,6 +20,6 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src", ".storybook/0-Welcome.stories.js"
   ]
 }
