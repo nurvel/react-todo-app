@@ -1,7 +1,7 @@
 import React from "react";
 import { Filter } from "../../store/filter/filterType";
 
-interface FilterHandleAttributes {
+export interface FilterHandleAttributes {
   filter: Filter;
   toggleShowImportant: () => void;
   toggleShowDone: () => void;

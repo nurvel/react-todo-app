@@ -6,7 +6,6 @@ import TodoListStories from "./TodoList.stories";
 export interface TodoListAttributes {
   todos: Todo[];
   filter?: Filter;
-  loadTodos: () => void;
   removeTodo: (todo: Todo) => void;
   updateTodoDone: (todo: Todo) => void;
   updateTodoImportant: (todo: Todo) => void;
