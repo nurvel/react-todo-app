@@ -1,21 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
-
-import {
-  toggleShowImportant,
-  toggleShowDone
-} from "../../store/filter/filterActions";
-
 import { Filter } from "../../store/filter/filterType";
-import { AppState, AppActions } from "../../store/index";
-import { ThunkDispatch } from "redux-thunk";
-import { bindActionCreators } from "redux";
+import { Todo } from "../../store/todos/todoType";
 
-interface FilterProps {}
-interface FilterState {}
-type Props = FilterProps & LinkStateProps & LinkDispatchProps;
+interface FilterHandleAttributes {
+  filter: Filter;
+  toggleShowImportant: () => void;
+  toggleShowDone: () => void;
+}
 
-const FilterHandle = (props: Props) => {
+type FilterHandleProps = FilterHandleAttributes;
+
+const FilterHandle = (props: FilterHandleProps) => {
   return (
     <div>
       <h3>Filter todos</h3>
@@ -35,24 +30,4 @@ const FilterHandle = (props: Props) => {
   );
 };
 
-interface LinkStateProps {
-  filter: Filter;
-}
-interface LinkDispatchProps {
-  toggleShowImportant: () => void;
-  toggleShowDone: () => void;
-}
-
-const mapStateToProps = (state: AppState) => {
-  return {
-    filter: state.filter
-  };
-};
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>) => ({
-  toggleShowImportant: bindActionCreators(toggleShowImportant, dispatch),
-  toggleShowDone: bindActionCreators(toggleShowDone, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterHandle);
-
+export default FilterHandle;
