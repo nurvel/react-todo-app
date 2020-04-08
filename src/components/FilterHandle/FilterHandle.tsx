@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import {
   toggleShowImportant,
   toggleShowDone
-} from "../store/filter/filterActions";
+} from "../../store/filter/filterActions";
 
-import { Filter } from "../store/filter/filterType";
-import { AppState, AppActions } from "../store/index";
+import { Filter } from "../../store/filter/filterType";
+import { AppState, AppActions } from "../../store/index";
 import { ThunkDispatch } from "redux-thunk";
 import { bindActionCreators } from "redux";
 
@@ -15,7 +15,7 @@ interface FilterProps {}
 interface FilterState {}
 type Props = FilterProps & LinkStateProps & LinkDispatchProps;
 
-const FilterComponent = (props: Props) => {
+const FilterHandle = (props: Props) => {
   return (
     <div>
       <h3>Filter todos</h3>
@@ -54,4 +54,5 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>) => ({
   toggleShowDone: bindActionCreators(toggleShowDone, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterHandle);
+

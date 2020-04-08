@@ -21,7 +21,7 @@ export const updateTodo = async (todoToChange: Todo) => {
 };
 
 export const deleteTodo = async (todo: Todo) => {
-  if (todo.id === undefined) throw "Todo has no id :/";
+  if (todo.id === undefined) throw new Error("Todo has no id :/");
   const urlOfDelete = url + `/${todo.id}`;
   const response = await axios.delete(urlOfDelete);
   console.log(response);

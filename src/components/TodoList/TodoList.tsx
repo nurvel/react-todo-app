@@ -5,23 +5,23 @@ import {
   removeTodo,
   updateTodoImportant,
   updateTodoDone,
-  loadTodos
-} from "../store/todos/todoActions";
-import { Todo } from "../store/todos/todoType";
-import { AppState, AppActions } from "../store/index";
-import { Dispatch, bindActionCreators } from "redux";
+  loadTodos,
+} from "../../store/todos/todoActions";
+import { Todo } from "../../store/todos/todoType";
+import { AppState, AppActions } from "../../store/index";
+import { bindActionCreators } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { Filter } from "../store/filter/filterType";
+import { Filter } from "../../store/filter/filterType";
 
 /// ei käytössä, koska komponentilla ei ole omia propseja
 interface TodosProps {}
 interface TodosState {}
 type Props = TodosProps & LinkStateProps & LinkDispatchProps;
 
-const Todos = (props: Props) => {
+const TodoList = (props: Props) => {
   useEffect(() => {
     props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
-  }, []);
+  }, [props]);
 
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
@@ -93,7 +93,7 @@ const todosToShow = (
 const mapStateToProps = (state: AppState, ownProps: TodosProps) => {
   return {
     todos: todosToShow(state.todos, state.filter),
-    filter: state.filter
+    filter: state.filter,
   };
 };
 
@@ -104,7 +104,7 @@ const mapDispatchToProps = (
   loadTodos: bindActionCreators(loadTodos, dispatch),
   updateTodoDone: bindActionCreators(updateTodoDone, dispatch),
   updateTodoImportant: bindActionCreators(updateTodoImportant, dispatch),
-  removeTodo: bindActionCreators(removeTodo, dispatch)
+  removeTodo: bindActionCreators(removeTodo, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

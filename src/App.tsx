@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import NewTodo from "./components/NewTodo";
-import Todos from "./components/Todos";
-import FilterComponent from "./components/FilterComponent";
+import NewTodo from "./components/NewTodo/NewTodo";
+import TodoList from "./components/TodoList/TodoList";
+import FilterHandle from "./components/FilterHandle/FilterHandle";
 
 const App = () => {
   return (
     <div>
       <h1>Redux todo app</h1>
       <NewTodo />
-      <FilterComponent />
-      <Todos />
+      <FilterHandle />
+      <TodoList />
     </div>
   );
 };

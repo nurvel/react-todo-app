@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "content": "This task is done and important",
+      "done": true,
+      "important": true,
+      "id": 1
+    },
+    {
+      "content": "Important task to be done!",
+      "done": false,
+      "important": true,
+      "id": 2
+    },
+    {
+      "content": "Do this task after the important ones",
+      "done": false,
+      "important": false,
+      "id": 3
+    },
+    {
+      "content": "The deed has been done, nice work!",
+      "done": true,
+      "important": false,
+      "id": 4
+    }
+  ]
+}
