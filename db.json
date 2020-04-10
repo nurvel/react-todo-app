@@ -23,6 +23,18 @@
       "done": false,
       "important": false,
       "id": 10
+    },
+    {
+      "content": "New Todo",
+      "done": false,
+      "important": false,
+      "id": 11
+    },
+    {
+      "content": "Totally new Todo",
+      "done": false,
+      "important": false,
+      "id": 12
     }
   ]
 }

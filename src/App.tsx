@@ -42,12 +42,12 @@ const App = (props: AppProps) => {
   } = props;
 
   useEffect(() => {
-    loadTodos();
+    loadTodos(); // TODO: not using the method connected to dispatch?
   }, [loadTodos]);
 
   return (
     <div>
-      <h1>Redux todo app</h1>
+      <h1>Todo app</h1>
       <NewTodo createNewTodo={createNewTodo} />
       <FilterHandle
         filter={filter}

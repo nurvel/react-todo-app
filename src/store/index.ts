@@ -25,13 +25,17 @@ const reducer = combineReducers({
 //   todos: [],
 // };
 
-export const store = createStore(
-  reducer,
-  //  persistedState,
-  composeWithDevTools(
-    applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>)
-  )
-);
+export const configureStore = () => {
+  const store = createStore(
+    reducer,
+    //  persistedState,
+    composeWithDevTools(
+      applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>)
+    )
+  );
+
+  return store;
+};
 
 // Persists the todo data to local storage
 // TODO: include lodas _throthle
