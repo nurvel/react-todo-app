@@ -15,20 +15,14 @@
     {
       "content": "Gotta do what i gotta do",
       "done": false,
-      "important": false,
+      "important": true,
       "id": 9
     },
     {
       "content": "New Todo",
       "done": false,
-      "important": false,
+      "important": true,
       "id": 10
-    },
-    {
-      "content": "New Todo",
-      "done": false,
-      "important": false,
-      "id": 11
     },
     {
       "content": "Totally new Todo",
