@@ -17,7 +17,7 @@ const todosOptions: any = {
 };
 
 const getProps = () => {
-  const todos = select("Todo data", todosOptions, todosOptions.withTodos);
+  const todos = select("Todo data", todosOptions, todosOptions.with_4_Todos);
 
   const showImportant = boolean("Show important", true);
   const showDone = boolean("Show done", true);

@@ -12,7 +12,7 @@ import {
 import { AppState, AppActions } from "./store";
 import { ThunkDispatch } from "redux-thunk";
 import { bindActionCreators } from "redux";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   loadTodos,
   updateTodoDone,
@@ -24,28 +24,42 @@ import {
 type AppProps = LinkStateProps & LinkDispatchProps;
 
 const App = (props: AppProps) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(loadTodos());
+  // }, [dispatch]);
+
+  const {
+    loadTodos,
+    createNewTodo,
+    toggleShowImportant,
+    toggleShowDone,
+    removeTodo,
+    updateTodoDone,
+    updateTodoImportant,
+    filter,
+    todos,
+  } = props;
+
   useEffect(() => {
-    dispatch(loadTodos());
-  }, [dispatch]);
+    loadTodos();
+  }, [loadTodos]);
 
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo
-        createNewTodo={createNewTodo}
-      />
+      <NewTodo createNewTodo={createNewTodo} />
       <FilterHandle
-        filter={props.filter}
-        toggleShowImportant={props.toggleShowImportant}
-        toggleShowDone={props.toggleShowDone}
+        filter={filter}
+        toggleShowImportant={toggleShowImportant}
+        toggleShowDone={toggleShowDone}
       />
       <TodoList
-        todos={props.todos}
-        filter={props.filter} // TODO: extract filtering from TodoList component?
-        removeTodo={props.removeTodo}
-        updateTodoDone={props.updateTodoDone}
-        updateTodoImportant={props.updateTodoImportant}
+        todos={todos}
+        filter={filter} // TODO: extract filtering from TodoList component?
+        removeTodo={removeTodo}
+        updateTodoDone={updateTodoDone}
+        updateTodoImportant={updateTodoImportant}
       />
     </div>
   );
@@ -63,6 +77,7 @@ interface LinkDispatchProps {
   removeTodo: (todo: Todo) => void;
   updateTodoDone: (todo: Todo) => void;
   updateTodoImportant: (todo: Todo) => void;
+  createNewTodo: (todo: Todo) => void;
 }
 
 const mapStateToProps = (state: AppState) => {

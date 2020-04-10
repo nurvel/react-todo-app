@@ -17,6 +17,12 @@
       "done": false,
       "important": false,
       "id": 9
+    },
+    {
+      "content": "New Todo",
+      "done": false,
+      "important": false,
+      "id": 10
     }
   ]
 }

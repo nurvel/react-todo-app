@@ -3,7 +3,7 @@ import { Todo } from "../store/todos/todoType";
 
 const url: string = "http://localhost:3001/todos";
 
-export const getTodos = async () => {
+export const getTodos = async (): Promise<Todo[]> => {
   const response = await axios.get(url);
   return response.data;
 };
