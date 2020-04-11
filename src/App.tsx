@@ -43,7 +43,7 @@ const App = (props: AppProps) => {
   } = props;
 
   useEffect(() => {
-    loadTodos(); // TODO: not using the method connected to dispatch?
+    loadTodos();
   }, [loadTodos]);
 
   return (
@@ -57,7 +57,6 @@ const App = (props: AppProps) => {
       />
       <TodoList
         todos={todos}
-        // filter={filter} // TODO: extract filtering from TodoList component?
         removeTodo={removeTodo}
         updateTodoDone={updateTodoDone}
         updateTodoImportant={updateTodoImportant}
