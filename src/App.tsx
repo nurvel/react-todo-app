@@ -20,6 +20,7 @@ import {
   removeTodo,
   createNewTodo,
 } from "./store/todos/todoActions";
+import { selectTodos } from "./store/selectors";
 
 type AppProps = LinkStateProps & LinkDispatchProps;
 
@@ -56,7 +57,7 @@ const App = (props: AppProps) => {
       />
       <TodoList
         todos={todos}
-        filter={filter} // TODO: extract filtering from TodoList component?
+        // filter={filter} // TODO: extract filtering from TodoList component?
         removeTodo={removeTodo}
         updateTodoDone={updateTodoDone}
         updateTodoImportant={updateTodoImportant}
@@ -83,7 +84,7 @@ interface LinkDispatchProps {
 const mapStateToProps = (state: AppState) => {
   return {
     filter: state.filter,
-    todos: state.todos,
+    todos: selectTodos(state),
   };
 };
 

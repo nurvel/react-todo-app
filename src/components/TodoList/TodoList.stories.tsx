@@ -19,15 +19,16 @@ const todosOptions: any = {
 const getProps = () => {
   const todos = select("Todo data", todosOptions, todosOptions.with_4_Todos);
 
-  const showImportant = boolean("Show important", true);
-  const showDone = boolean("Show done", true);
-  const filter = {
-    showImportant,
-    showDone,
-  };
+  // const showImportant = boolean("Show important", true);
+  // const showDone = boolean("Show done", true);
+  // const filter = {
+  //   showImportant,
+  //   showDone,
+  // };
+
   const props: TodoListAttributes = {
     todos,
-    filter,
+    //  filter,
     removeTodo: () => {},
     updateTodoDone: () => {},
     updateTodoImportant: () => {},
