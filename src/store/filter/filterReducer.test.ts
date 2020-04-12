@@ -4,8 +4,7 @@ import thunk from "redux-thunk";
 
 import filterReducer from "./filterReducer";
 import { Filter, SET_FILTER } from "./filterType";
-import { AppActions, AppState } from "../index";
-import { Dispatch } from "redux";
+import { AppActions } from "../index";
 import { toggleShowImportant, toggleShowDone } from "./filterActions";
 
 const middlewares = [thunk];

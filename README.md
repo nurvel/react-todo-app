@@ -45,3 +45,7 @@ https://www.youtube.com/watch?v=dZZxegovK9Q
 
 Redux ja hooks - more simple way to get a handle to state ja action creators in components than connect
 https://thoughtbot.com/blog/using-redux-with-react-hooks
+
+
+About test coverage:
+https://blog.seriesci.com/how-to-create-code-coverage-for-your-react-app/

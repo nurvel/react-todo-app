@@ -7,25 +7,25 @@ import { SET_TODOS, ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./todoType";
 
 export const setTodos = (todos: Todo[]): AppActions => ({
   type: SET_TODOS,
-  todos
+  todos,
 });
 
 export const addTodo = (todo: Todo): AppActions => ({
   type: ADD_TODO,
-  todo
+  todo,
 });
 
 export const deleteTodo = (todo: Todo): AppActions => ({
   type: DELETE_TODO,
-  todo
+  todo,
 });
 
 export const updateTodo = (todo: Todo): AppActions => ({
   type: UPDATE_TODO,
-  todo
+  todo,
 });
 
-// getState turha tässä, mutta esimerkkinä
+// getState not needed here, but saved as a example/reminder
 export const loadTodos = () => {
   return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
     const todos: Todo[] = await todoService.getTodos();
@@ -51,7 +51,7 @@ export const removeTodo = (todo: Todo) => {
   };
 };
 
-// HOX: Alla kaksi tapaa update todo - Important ja Done
+// HOX: 2 ways to update todo - Important ja Done
 export const updateTodoDone = (todo: Todo) => {
   return async (dispatch: Dispatch<AppActions>) => {
     const updatedTodo: Todo = { ...todo, done: !todo.done };
