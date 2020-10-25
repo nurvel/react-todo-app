@@ -3,10 +3,10 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import todoReducer from "./todos/todoReducer";
-import filterReducer from "./filter/filterReducer";
+import filterReducer from "./filter/todoFilterReducer";
 
 import { TodoActionTypes } from "./todos/todoType";
-import { FilterActionTypes } from "./filter/filterType";
+import { TodoFilterActionTypes } from "./filter/todoFilterType";
 
 const reducer = combineReducers({
   todos: todoReducer,
@@ -22,4 +22,4 @@ export const store = createStore(
 
 export type AppState = ReturnType<typeof reducer>; // kokonaan recuerit - sourse of truth to app state
 
-export type AppActions = TodoActionTypes | FilterActionTypes;
+export type AppActions = TodoActionTypes | TodoFilterActionTypes;

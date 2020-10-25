@@ -11,6 +11,12 @@
       "done": false,
       "important": false,
       "id": 8
+    },
+    {
+      "content": "Finalize",
+      "done": false,
+      "important": true,
+      "id": 9
     }
   ]
 }
