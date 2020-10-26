@@ -9,7 +9,7 @@ import { TodoActionTypes } from "./todos/todoType";
 import { TodoFilterActionTypes } from "./filter/todoFilterType";
 
 const reducer = combineReducers({
-  todos: todoReducer,
+  todoState: todoReducer,
   filter: filterReducer
 });
 

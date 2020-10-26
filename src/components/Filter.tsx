@@ -1,13 +1,19 @@
 import React from "react";
 import { TodoFilter } from "../store/filter/todoFilterType";
 
-interface FilterProps {
+export interface FilterAttrs {
+  /** Filter for important and done  */
   todoFilter: TodoFilter;
+}
+
+export interface FilterDispatchers {
   toggleShowImportant: () => void;
   toggleShowDone: () => void;
 }
 
-interface FilterState {}
+export type FilterProps = FilterAttrs & FilterDispatchers;
+
+// interface FilterState {}
 
 export const Filter = (props: FilterProps) => {
   const { toggleShowImportant, toggleShowDone, todoFilter } = props;

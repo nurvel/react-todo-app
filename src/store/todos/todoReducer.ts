@@ -1,17 +1,34 @@
-import { Todo, TodoActionTypes } from "./todoType";
+import { Todo, TodoActionTypes, TypeKeys } from "./todoType";
 
-const initialState: Todo[] = [];
+export interface TodoState {
+ todos: Todo[];
+}
 
-const reducer = (state = initialState, action: TodoActionTypes): Todo[] => {
+const initialState: TodoState = {
+  todos: [],
+};
+
+const reducer = (state = initialState, action: TodoActionTypes): TodoState => {
   switch (action.type) {
-    case "SET_TODOS":
-      return [...action.todos];
-    case "ADD_TODO":
-      return [...state, action.todo];
-    case "UPDATE_TODO":
-      return state.map(t => (t.id === action.todo.id ? action.todo : t));
-    case "DELETE_TODO":
-      return state.filter(t => t.id !== action.todo.id);
+    case TypeKeys.LOAD_TODOS:
+      return { ...state };
+    case TypeKeys.ADD_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.todo],
+      };
+    case TypeKeys.UPDATE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((t: Todo) =>
+          t.id === action.todo.id ? action.todo : t
+        ),
+      };
+    case TypeKeys.DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter((t) => t.id !== action.todo.id),
+      };
     default:
       return state;
   }

@@ -1,31 +1,42 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 
-import {
-  removeTodo,
-  updateTodoImportant,
-  updateTodoDone,
-  loadTodos
-} from "../store/todos/todoActions";
 import { Todo } from "../store/todos/todoType";
-import { AppState, AppActions } from "../store/index";
-import { Dispatch, bindActionCreators } from "redux";
-import { ThunkDispatch } from "redux-thunk";
 import { TodoFilter } from "../store/filter/todoFilterType";
 
-/// ei käytössä, koska komponentilla ei ole omia propseja
-interface TodosProps {}
-interface TodosState {}
-type Props = TodosProps & LinkStateProps & LinkDispatchProps;
+export interface TodosAttrs {
+  todos: Todo[];
+  todoFilter: TodoFilter;
+}
+export interface TodosDispatchers {
+  loadTodos: () => void;
+  removeTodo: (todo: Todo) => void;
+  updateTodo: (todo: Todo) => void;
+}
 
-const Todos = (props: Props) => {
+export type TodosProps = TodosAttrs & TodosDispatchers;
+
+export const Todos = (props: TodosProps) => {
+  const { todos, todoFilter, loadTodos, removeTodo, updateTodo } = props;
+
   useEffect(() => {
-    props.loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
+    loadTodos(); // käyttää reduxin kautta actionia, joka lataa todot App:n propseisin
   }, []);
+
+  const todosToShow = filterTodos(todos, todoFilter);
+
+  const toggleImportant = (todo: Todo): void => {
+    const updatedTodo: Todo = { ...todo, important: !todo.important };
+    updateTodo(updatedTodo);
+  };
+
+  const toggleDone = (todo: Todo): void => {
+    const updatedTodo: Todo = { ...todo, important: !todo.done };
+    updateTodo(updatedTodo);
+  };
 
   // renderöi todo-rivit propseina annetun datan pohjalta
   const maketodoRows = () => {
-    return props.todos.map((todo: Todo, i: number) => {
+    return todosToShow.map((todo: Todo, i: number) => {
       return (
         <tr
           key={i}
@@ -33,14 +44,14 @@ const Todos = (props: Props) => {
           style={todo.done ? { textDecoration: "line-through" } : undefined}
         >
           <td>{i}</td>
-          <td onClick={() => props.updateTodoDone(todo)}>{todo.content}</td>
+          <td onClick={() => toggleImportant(todo)}>{todo.content}</td>
           <td>
-            <button onClick={() => props.updateTodoImportant(todo)}>
+            <button onClick={() => toggleDone(todo)}>
               {todo.important.toString()}
             </button>
           </td>
           <td>
-            <button onClick={() => props.removeTodo(todo)}> delete</button>
+            <button onClick={() => removeTodo(todo)}> delete</button>
           </td>
         </tr>
       );
@@ -65,46 +76,14 @@ const Todos = (props: Props) => {
   );
 };
 
-// interfacet määrittää paluuarvot
-interface LinkStateProps {
-  todos: Todo[];
-  filter: TodoFilter;
-}
-interface LinkDispatchProps {
-  loadTodos: () => void;
-  removeTodo: (todo: Todo) => void;
-  updateTodoDone: (todo: Todo) => void;
-  updateTodoImportant: (todo: Todo) => void;
-}
-
-const todosToShow = (
+const filterTodos = (
   todos: Todo[],
-  filter: { showImportant: any; showDone: any }
-) => {
+  todoFilter: { showImportant: any; showDone: any }
+): Todo[] => {
   const filterConstaints = (todo: Todo) => {
-    if (!filter.showImportant && !todo.important) return false;
-    if (!filter.showDone && todo.done) return false;
+    if (!todoFilter.showImportant && !todo.important) return false;
+    if (!todoFilter.showDone && todo.done) return false;
     return true;
   };
-
   return todos.filter(filterConstaints);
 };
-
-const mapStateToProps = (state: AppState, ownProps: TodosProps) => {
-  return {
-    todos: todosToShow(state.todos, state.filter),
-    filter: state.filter
-  };
-};
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<any, any, AppActions>,
-  ownProps: TodosProps
-) => ({
-  loadTodos: bindActionCreators(loadTodos, dispatch),
-  updateTodoDone: bindActionCreators(updateTodoDone, dispatch),
-  updateTodoImportant: bindActionCreators(updateTodoImportant, dispatch),
-  removeTodo: bindActionCreators(removeTodo, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
