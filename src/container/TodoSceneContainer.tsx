@@ -1,32 +1,34 @@
 import React from "react";
-
-import NewTodo from "../components/NewTodo";
-import Todos from "../components/Todos";
-import Filter from "../components/Filter";
 import { connect } from "react-redux";
+import TodoScene from "../components/TodoScene";
 import { AppActions, AppState } from "../store";
+import {
+  toggleShowDone,
+  toggleShowImportant,
+} from "../store/filter/todoFilterActions";
+import { TodoFilter } from "../store/filter/todoFilterType";
 
-const TodoScene = () => {
-  return (
-    <div>
-      <h1>Redux todo app</h1>
-      <NewTodo />
-      <Filter />
-      <Todos />
-    </div>
-  );
-};
+interface LinkStateProps {
+  todoFilter: TodoFilter;
+}
 
+interface LinkDispatchProps {
+  toggleShowImportant: () => void;
+  toggleShowDone: () => void;
+}
 
 const mapStateToProps = (state: AppState) => {
-    return {
-      filter: state.filter
-    };
+  return {
+    todoFilter: state.filter,
   };
-  
-const mapDispatchToProps = (dispatch: React.Dispatch<AppActions>) => ({
-    // toggleShowImportant: bindActionCreators(toggleShowImportant, dispatch),
-    // toggleShowDone: bindActionCreators(toggleShowDone, dispatch)
-  });
+};
 
-export const TodoSceneContainer =  connect(mapStateToProps, mapDispatchToProps)(TodoScene);
+const mapDispatchToProps = (dispatch: React.Dispatch<AppActions>) => ({
+  toggleShowImportant: () => dispatch(toggleShowImportant()),
+  toggleShowDone: () => dispatch(toggleShowDone()),
+});
+
+export const TodoSceneContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoScene);

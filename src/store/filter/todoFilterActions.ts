@@ -1,30 +1,19 @@
-import { TodoFilter, SET_TODOFILTER } from "./todoFilterType";
-import { AppActions, AppState } from "../index";
-import { Dispatch } from "redux";
+import { TodoFilter, TypeKeys } from "./todoFilterType";
+import { AppActions } from "../index"; // AppState
 
 export const setFilter = (filter: TodoFilter): AppActions => ({
-  type: SET_TODOFILTER,
-  filter
+  type: TypeKeys.SET_TODOFILTER,
+  filter,
 });
 
-export const toggleShowImportant = () => {
-  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-    const currentFilter = getState().filter;
-    const newFilter: TodoFilter = {
-      ...currentFilter,
-      showImportant: !currentFilter.showImportant
-    };
-    dispatch(setFilter(newFilter));
+export const toggleShowImportant = (): AppActions => {
+  return {
+    type: TypeKeys.TODO_FILTER_TOGGLE_IMPORTANT,
   };
 };
 
-export const toggleShowDone = () => {
-  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-    const currentFilter = getState().filter;
-    const newFilter: TodoFilter = {
-      ...currentFilter,
-      showDone: !currentFilter.showDone
-    };
-    dispatch(setFilter(newFilter));
+export const toggleShowDone = (): AppActions => {
+  return {
+    type: TypeKeys.TODO_FILTER_TOGGLE_DONE,
   };
 };

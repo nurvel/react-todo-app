@@ -1,14 +1,30 @@
-import { TodoFilter, TodoFilterActionTypes } from "./todoFilterType";
+import { TodoFilter, TodoFilterActionTypes, TypeKeys } from "./todoFilterType";
 
 const initialState: TodoFilter = {
   showImportant: true,
-  showDone: true
+  showDone: true,
 };
 
-const reducer = (state = initialState, action: TodoFilterActionTypes): TodoFilter => {
+const reducer = (
+  state = initialState,
+  action: TodoFilterActionTypes
+): TodoFilter => {
   switch (action.type) {
-    case "SET_TODOFILTER":
-      return action.filter;
+    case TypeKeys.SET_TODOFILTER:
+      return {
+        ...state,
+        ...action.filter,
+      };
+    case TypeKeys.TODO_FILTER_TOGGLE_IMPORTANT:
+      return {
+        ...state,
+        showImportant: !state.showImportant,
+      };
+    case TypeKeys.TODO_FILTER_TOGGLE_DONE:
+      return {
+        ...state,
+        showDone: !state.showDone,
+      };
     default:
       return state;
   }
