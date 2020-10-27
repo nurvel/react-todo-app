@@ -1,3 +1,4 @@
+import { dummyTodo } from "./todoActions";
 
 export interface Todo {
   content: string;
@@ -37,9 +38,14 @@ export interface loadTodosFulfilled {
   todos: Todo[];
 }
 
+export interface DummyTodo {
+  type: typeof TypeKeys.LOAD_TODOS_FULFILLED;
+}
+
 export type TodoActionTypes =
   | AddTodoAction
   | DeleteTodoAction
   | UpdateTodoAction
   | LoadTodosAction
-  | loadTodosFulfilled;
+  | loadTodosFulfilled
+  | DummyTodo;

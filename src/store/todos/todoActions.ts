@@ -1,5 +1,5 @@
 import todoService from "../../services/todoService";
-import { Todo, TypeKeys } from "./todoType";
+import { DummyTodo, Todo, TypeKeys } from "./todoType";
 import { AppActions } from "../index";
 import { Dispatch } from "redux";
 
@@ -20,6 +20,11 @@ export const updateTodo = (todo: Todo): AppActions => ({
 
 export const loadTodos = (): AppActions => ({
   type: TypeKeys.LOAD_TODOS,
+});
+
+// POC
+export const dummyTodo = (): AppActions => ({
+  type: TypeKeys.LOAD_TODOS_FULFILLED,
 });
 
 export const loadTodosFulfilled = (todos: Todo[]): AppActions => ({
