@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { createNewTodo } from "../store/todos/todoActions";
-import { Todo } from "../store/todos/todoType";
-import { AppActions } from "../store/index";
 import { ThunkDispatch } from "redux-thunk";
 import { bindActionCreators } from "redux";
+import { AppActions } from "../store/actions";
+import { createNewTodo } from "../store/actions/todoActions";
+import { Todo } from "../store/reducers/todoReducer";
 
 interface NewTodoProps {}
 interface NewTodoState {}

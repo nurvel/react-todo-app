@@ -1,4 +1,11 @@
-import { TodoFilter, TodoFilterActionTypes, TypeKeys } from "./todoFilterType";
+import { TypeKeys } from "../actions";
+import { TodoFilterActionTypes } from "../actions/todoFilterActions";
+
+
+export interface TodoFilter {
+  showImportant: boolean;
+  showDone: boolean;
+}
 
 const initialState: TodoFilter = {
   showImportant: true,

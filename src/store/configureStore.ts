@@ -1,16 +1,11 @@
-import {
-  applyMiddleware,
-  compose,
-  createStore,
-  Store,
-} from "redux";
+import { applyMiddleware, compose, createStore, Store } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
 import { AppState, rootReducer } from ".";
 
-import { dummyTodo } from "./todos/todoActions";
 import { of } from "rxjs";
-import { loadTodosEpic } from "../epics/todoEpics";
+import { loadTodosEpic } from "./epics/todoEpics";
+import { dummyTodo } from "./actions/todoActions";
 
 const epic1 = () => of(dummyTodo());
 

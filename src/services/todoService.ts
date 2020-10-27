@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Todo } from "../store/todos/todoType";
+import { Todo } from "../store/reducers/todoReducer";
 
 const url: string = "http://localhost:3001/todos";
 

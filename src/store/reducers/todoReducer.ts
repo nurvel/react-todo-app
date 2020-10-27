@@ -1,7 +1,15 @@
-import { Todo, TodoActionTypes, TypeKeys } from "./todoType";
+import { TypeKeys } from "../actions";
+import { TodoActionTypes } from "../actions/todoActions";
+
+export interface Todo {
+  content: string;
+  done: boolean;
+  important: boolean;
+  id?: number;
+}
 
 export interface TodoState {
- todos: Todo[];
+  todos: Todo[];
 }
 
 const initialState: TodoState = {

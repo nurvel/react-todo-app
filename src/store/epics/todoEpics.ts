@@ -1,10 +1,10 @@
-import { TypeKeys, TodoActionTypes, DummyTodo } from "../store/todos/todoType";
 import { ActionsObservable, Epic, StateObservable } from "redux-observable";
-import { AppState, AppActions } from "../store/index";
+import { AppState } from "../index";
 import { Action } from "redux";
 import { mergeMap } from "rxjs/operators";
 import { of } from "rxjs";
-import { dummyTodo } from "../store/todos/todoActions";
+import { dummyTodo, TodoActionTypes } from "../actions/todoActions";
+import { TypeKeys } from "../actions";
 
 export const loadTodosEpic: Epic<TodoActionTypes, Action, AppState> = (
   action$: ActionsObservable<TodoActionTypes>,

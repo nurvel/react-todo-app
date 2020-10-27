@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoFilter } from "../store/filter/todoFilterType";
+import { TodoFilter } from "../store/reducers/todoFilterReducer";
 
 export interface FilterAttrs {
   /** Filter for important and done  */

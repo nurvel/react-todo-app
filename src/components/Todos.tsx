@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-
-import { Todo } from "../store/todos/todoType";
-import { TodoFilter } from "../store/filter/todoFilterType";
+import { TodoFilter } from "../store/reducers/todoFilterReducer";
+import { Todo } from "../store/reducers/todoReducer";
 
 export interface TodosAttrs {
   todos: Todo[];

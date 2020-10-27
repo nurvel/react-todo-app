@@ -1,6 +1,6 @@
 import React from "react";
-import { TodoFilter } from "../store/filter/todoFilterType";
-import { Todo } from "../store/todos/todoType";
+import { TodoFilter } from "../store/reducers/todoFilterReducer";
+import { Todo } from "../store/reducers/todoReducer";
 import { Filter } from "./Filter";
 import NewTodo from "./NewTodo";
 import { Todos } from "./Todos";

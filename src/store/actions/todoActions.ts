@@ -1,7 +1,7 @@
 import todoService from "../../services/todoService";
-import { DummyTodo, Todo, TypeKeys } from "./todoType";
-import { AppActions } from "../index";
 import { Dispatch } from "redux";
+import { AppActions, TypeKeys } from ".";
+import { Todo } from "../reducers/todoReducer";
 
 export const addTodo = (todo: Todo): AppActions => ({
   type: TypeKeys.ADD_TODO,
@@ -38,3 +38,39 @@ export const createNewTodo = (todo: Todo) => {
     dispatch(addTodo(newTodo));
   };
 };
+
+export interface AddTodoAction {
+  type: typeof TypeKeys.ADD_TODO;
+  todo: Todo;
+}
+
+export interface DeleteTodoAction {
+  type: typeof TypeKeys.DELETE_TODO;
+  todo: Todo;
+}
+
+export interface UpdateTodoAction {
+  type: typeof TypeKeys.UPDATE_TODO;
+  todo: Todo;
+}
+
+export interface LoadTodosAction {
+  type: typeof TypeKeys.LOAD_TODOS;
+}
+
+export interface loadTodosFulfilled {
+  type: typeof TypeKeys.LOAD_TODOS_FULFILLED;
+  todos: Todo[];
+}
+
+export interface DummyTodo {
+  type: typeof TypeKeys.LOAD_TODOS_FULFILLED;
+}
+
+export type TodoActionTypes =
+  | AddTodoAction
+  | DeleteTodoAction
+  | UpdateTodoAction
+  | LoadTodosAction
+  | loadTodosFulfilled
+  | DummyTodo;

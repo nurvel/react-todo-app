@@ -1,17 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import TodoScene, { TodoSceneAttrs, TodoSceneDispachers } from "../components/TodoScene";
-import { AppActions, AppState } from "../store";
+import {  AppState } from "../store";
+import { AppActions } from "../store/actions";
+import { loadTodos, removeTodo, updateTodo } from "../store/actions/todoActions";
 import {
   toggleShowDone,
   toggleShowImportant,
-} from "../store/filter/todoFilterActions";
-import {
-  loadTodos,
-  removeTodo,
-  updateTodo,
-} from "../store/todos/todoActions";
-import { Todo } from "../store/todos/todoType";
+} from "../store/actions/todoFilterActions";
+import { Todo } from "../store/reducers/todoReducer";
+
 
 const mapStateToProps = (state: AppState): TodoSceneAttrs => {
   return {
