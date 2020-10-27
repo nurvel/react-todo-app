@@ -13,5 +13,7 @@ export enum TypeKeys {
   LOAD_TODOS = "LOAD_TODOS",
   LOAD_TODOS_FULFILLED = "LOAD_TODOS_FULFILLED",
 }
+export * from "./todoActions";
+export * from "./todoFilterActions";
 
 export type AppActions = TodoFilterActionTypes | TodoActionTypes;

@@ -1,29 +1,24 @@
 import React from "react";
-import { connect } from "react-redux";
-
-import { ThunkDispatch } from "redux-thunk";
-import { bindActionCreators } from "redux";
-import { AppActions } from "../store/actions";
-import { createNewTodo } from "../store/actions/todoActions";
 import { Todo } from "../store/reducers/todoReducer";
 
-interface NewTodoProps {}
-interface NewTodoState {}
-type Props = NewTodoProps & LinkStateProps & LinkDispatchProps;
+interface NewTodoPAttrs {}
+interface NewTodoDispatchers {
+  createNewTodo: (todo: Todo) => void;
+}
+type NewTodoProps = NewTodoPAttrs & NewTodoDispatchers;
 
-const NewTodo = (props: Props) => {
+export const NewTodo = (props: NewTodoProps) => {
   const handleNewTodo = (event: any) => {
     event.preventDefault();
     const todoItem: Todo = {
       content: event.target.todo.value,
       done: false,
-      important: event.target.important.checked
+      important: event.target.important.checked,
     };
     props.createNewTodo(todoItem);
 
     // TODO: Formin resetointi ei toimi näin typeScriptillä
     //document.getElementById("todoForm").reset();
-
   };
 
   return (
@@ -37,17 +32,3 @@ const NewTodo = (props: Props) => {
     </div>
   );
 };
-
-interface LinkStateProps {}
-interface LinkDispatchProps {
-  createNewTodo: (todo: Todo) => void;
-}
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<any, any, AppActions>,
-  ownProps: NewTodoProps
-) => ({
-  createNewTodo: bindActionCreators(createNewTodo, dispatch)
-});
-
-export default connect(null, mapDispatchToProps)(NewTodo);

@@ -2,12 +2,9 @@ import { applyMiddleware, compose, createStore, Store } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
 import { AppState, rootReducer } from ".";
-
-import { of } from "rxjs";
 import { loadTodosEpic } from "./epics/todoEpics";
-import { dummyTodo } from "./actions/todoActions";
 
-const epic1 = () => of(dummyTodo());
+// const epic1 = () => of(dummyTodo());
 
 declare global {
   interface Window {
@@ -18,7 +15,7 @@ declare global {
 export default function configureStore(
   initialState?: AppState
 ): Store<AppState> {
-  const rootEpic = combineEpics(epic1);
+  const rootEpic = combineEpics(loadTodosEpic);
 
   const epicMiddleware = createEpicMiddleware();
 

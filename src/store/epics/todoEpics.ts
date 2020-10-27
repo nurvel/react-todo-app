@@ -1,19 +1,22 @@
 import { ActionsObservable, Epic, StateObservable } from "redux-observable";
 import { AppState } from "../index";
-import { Action } from "redux";
-import { mergeMap } from "rxjs/operators";
-import { of } from "rxjs";
-import { dummyTodo, TodoActionTypes } from "../actions/todoActions";
-import { TypeKeys } from "../actions";
+import { catchError, map, mergeMap, tap } from "rxjs/operators";
+import { from, of } from "rxjs";
+import { TodoActionTypes, TypeKeys } from "../actions";
+import { getTodos, getTodosPromise } from "../../services/todoService";
+import { loadTodosFulfilled } from "../actions/todoActions";
+import { Todo } from "../reducers/todoReducer";
 
-export const loadTodosEpic: Epic<TodoActionTypes, Action, AppState> = (
+export const loadTodosEpic: Epic<TodoActionTypes, TodoActionTypes, any> = (
   action$: ActionsObservable<TodoActionTypes>,
   state$: StateObservable<AppState>
 ) => {
   return action$.ofType(TypeKeys.LOAD_TODOS).pipe(
-    mergeMap(() => {
-      return of(dummyTodo());
-    })
+    tap((action) => console.log(action)),
+    mergeMap(
+      (actions) => from(getTodosPromise()).pipe(map(loadTodosFulfilled))
+      // catchError((error) => of())
+    )
   );
 };
 

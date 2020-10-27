@@ -20,6 +20,11 @@ const reducer = (state = initialState, action: TodoActionTypes): TodoState => {
   switch (action.type) {
     case TypeKeys.LOAD_TODOS:
       return { ...state };
+    case TypeKeys.LOAD_TODOS_FULFILLED:
+      return {
+        ...state,
+        todos: action.todos
+      }
     case TypeKeys.ADD_TODO:
       return {
         ...state,

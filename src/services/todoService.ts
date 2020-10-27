@@ -1,11 +1,21 @@
 import axios from "axios";
+import Axios from "axios-observable";
 import { Todo } from "../store/reducers/todoReducer";
 
 const url: string = "http://localhost:3001/todos";
 
-export const getTodos = async () => {
-  const response = await axios.get(url);
-  return response.data;
+// export const getTodos = async () => {
+export const getTodos = () => {
+  return Axios.get(url).subscribe(
+    (response) => response.data,
+    (error) => error
+  );
+  // const response = await axios.get(url);
+  // return response.data;
+};
+
+export const getTodosPromise = (): Promise<Todo[]> => {
+  return axios.get(url).then((response) => response.data);
 };
 
 export const addTodo = async (todoItem: Todo) => {
