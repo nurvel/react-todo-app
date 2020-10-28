@@ -29,7 +29,7 @@ export const Todos = (props: TodosProps) => {
   };
 
   const toggleDone = (todo: Todo): void => {
-    const updatedTodo: Todo = { ...todo, important: !todo.done };
+    const updatedTodo: Todo = { ...todo, done: !todo.done };
     updateTodo(updatedTodo);
   };
 
@@ -43,9 +43,9 @@ export const Todos = (props: TodosProps) => {
           style={todo.done ? { textDecoration: "line-through" } : undefined}
         >
           <td>{i}</td>
-          <td onClick={() => toggleImportant(todo)}>{todo.content}</td>
+          <td onClick={() => toggleDone(todo)}>{todo.content}</td>
           <td>
-            <button onClick={() => toggleDone(todo)}>
+            <button onClick={() => toggleImportant(todo)}>
               {todo.important.toString()}
             </button>
           </td>

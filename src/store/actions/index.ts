@@ -2,7 +2,7 @@ import { TodoActionTypes } from "./todoActions";
 import { TodoFilterActionTypes } from "./todoFilterActions";
 
 // USE?: https://www.npmjs.com/package/typesafe-actions
-
+// https://stackoverflow.com/questions/53415353/react-redux-observable-typescript-compilation-argument-not-assignable-err/54306270#54306270
 export enum TypeKeys {
   // FILTER
   SET_TODOFILTER = "SET_TODOFILTER",
@@ -22,6 +22,8 @@ export enum TypeKeys {
   LOAD_TODOS_FULFILLED = "LOAD_TODOS_FULFILLED",
   LOAD_TODOS_FAILED = "LOAD_TODOS_FAILED",
 }
+
+
 export * from "./todoActions";
 export * from "./todoFilterActions";
 

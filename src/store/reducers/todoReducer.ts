@@ -29,19 +29,19 @@ const reducer = (state = initialState, action: TodoActionTypes): TodoState => {
         ...state,
         todos: action.todos,
       };
-    case TypeKeys.ADD_TODO:
+    case TypeKeys.ADD_TODO_FULFILLED:
       return {
         ...state,
         todos: [...state.todos, action.todo],
       };
-    case TypeKeys.UPDATE_TODO:
+    case TypeKeys.UPDATE_TODO_FULFILLED:
       return {
         ...state,
         todos: state.todos.map((t: Todo) =>
           t.id === action.todo.id ? action.todo : t
         ),
       };
-    case TypeKeys.DELETE_TODO:
+    case TypeKeys.DELETE_TODO_FULFILLED:
       return {
         ...state,
         todos: state.todos.filter((t) => t.id !== action.todo.id),

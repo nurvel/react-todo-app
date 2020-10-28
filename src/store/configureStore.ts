@@ -2,7 +2,8 @@ import { applyMiddleware, compose, createStore, Store } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
 import { AppState, rootReducer } from ".";
-import { loadTodosEpic, todoEpic } from "./epics/todoEpics";
+import { appEpic } from "./epics";
+import { todoEpic } from "./epics/todoEpics";
 
 // const epic1 = () => of();
 
@@ -16,7 +17,8 @@ export default function configureStore(
   initialState?: AppState,
   dependencies = {} // for testing inject external dependencies
 ): Store<AppState> {
-  const rootEpic = combineEpics(loadTodosEpic);
+  
+  // const rootEpic = combineEpics(todoEpic); // Use appEpic
 
   const epicMiddleware = createEpicMiddleware({
     ...dependencies,
@@ -29,6 +31,6 @@ export default function configureStore(
     rootReducer,
     composeEnhancers(applyMiddleware(epicMiddleware))
   );
-  epicMiddleware.run(rootEpic); // initializes epics
+  epicMiddleware.run(appEpic); // initializes epics // HOX: appEpic does not work
   return store;
 }
