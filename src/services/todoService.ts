@@ -1,21 +1,22 @@
 import axios from "axios";
 import Axios from "axios-observable";
+// import { Observable } from "rxjs";
 import { Todo } from "../store/reducers/todoReducer";
 
 const url: string = "http://localhost:3001/todos";
 
-// export const getTodos = async () => {
-export const getTodos = () => {
+// Returns observable
+export const getTodosObservable = () => {
   return Axios.get(url).subscribe(
     (response) => response.data,
     (error) => error
   );
-  // const response = await axios.get(url);
-  // return response.data;
 };
 
 export const getTodosPromise = (): Promise<Todo[]> => {
   return axios.get(url).then((response) => response.data);
+  // Error is catched if Epics
+  // .catch((err) => new Error(err));
 };
 
 export const addTodo = async (todoItem: Todo) => {
@@ -31,10 +32,10 @@ export const updateTodo = async (todoToChange: Todo) => {
 };
 
 export const deleteTodo = async (todo: Todo) => {
-  if (todo.id === undefined) throw "Todo has no id :/";
+  if (todo.id === undefined) throw Error("Todo has no id :/");
   const urlOfDelete = url + `/${todo.id}`;
   const response = await axios.delete(urlOfDelete);
   console.log(response);
 };
 
-export default { getTodos, addTodo, updateTodo, deleteTodo };
+export default { addTodo, updateTodo, deleteTodo };

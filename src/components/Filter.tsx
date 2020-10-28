@@ -1,9 +1,9 @@
 import React from "react";
-import { TodoFilter } from "../store/reducers/todoFilterReducer";
+import { TodoFilterState } from "../store/reducers/todoFilterReducer";
 
 export interface FilterAttrs {
   /** Filter for important and done  */
-  todoFilter: TodoFilter;
+  todoFilter: TodoFilterState;
 }
 
 export interface FilterDispatchers {

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { TodoFilter } from "../store/reducers/todoFilterReducer";
+import { TodoFilterState } from "../store/reducers/todoFilterReducer";
 import { Todo } from "../store/reducers/todoReducer";
 
 export interface TodosAttrs {
   todos: Todo[];
-  todoFilter: TodoFilter;
+  todoFilter: TodoFilterState;
 }
 export interface TodosDispatchers {
   loadTodos: () => void;

@@ -1,12 +1,12 @@
 import React from "react";
-import { TodoFilter } from "../store/reducers/todoFilterReducer";
+import { TodoFilterState } from "../store/reducers/todoFilterReducer";
 import { Todo } from "../store/reducers/todoReducer";
 import { Filter } from "./Filter";
 import { NewTodo } from "./NewTodo";
 import { Todos } from "./Todos";
 
 export type TodoSceneAttrs = {
-  todoFilter: TodoFilter;
+  todoFilter: TodoFilterState;
   todos: Todo[];
 };
 
@@ -16,6 +16,7 @@ export type TodoSceneDispachers = {
   loadTodos: () => void;
   removeTodo: (todo: Todo) => void;
   updateTodo: (todo: Todo) => void;
+  addTodo: (todo: Todo) => void;
 };
 
 export type TodoSceneProps = TodoSceneAttrs & TodoSceneDispachers;
@@ -29,12 +30,13 @@ const TodoScene = (props: TodoSceneProps) => {
     loadTodos,
     removeTodo,
     updateTodo,
+    addTodo
   } = props;
 
   return (
     <div>
       <h1>Redux todo app</h1>
-      <NewTodo createNewTodo={() => console.log("todo")} />
+      <NewTodo createNewTodo={addTodo} />
       <Filter
         toggleShowImportant={toggleShowImportant}
         toggleShowDone={toggleShowDone}

@@ -2,9 +2,9 @@ import { applyMiddleware, compose, createStore, Store } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
 import { AppState, rootReducer } from ".";
-import { loadTodosEpic } from "./epics/todoEpics";
+import { loadTodosEpic, todoEpic } from "./epics/todoEpics";
 
-// const epic1 = () => of(dummyTodo());
+// const epic1 = () => of();
 
 declare global {
   interface Window {
@@ -13,11 +13,14 @@ declare global {
 }
 
 export default function configureStore(
-  initialState?: AppState
+  initialState?: AppState,
+  dependencies = {} // for testing inject external dependencies
 ): Store<AppState> {
   const rootEpic = combineEpics(loadTodosEpic);
 
-  const epicMiddleware = createEpicMiddleware();
+  const epicMiddleware = createEpicMiddleware({
+    ...dependencies,
+  });
 
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

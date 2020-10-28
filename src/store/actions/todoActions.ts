@@ -1,75 +1,70 @@
-import { Action } from "redux";
+// import { Action } from "redux";
+// USE?:https://www.npmjs.com/package/typesafe-actions
+
 import { TypeKeys } from ".";
 import { Todo } from "../reducers/todoReducer";
 
-export const addTodo = (todo: Todo): TodoActionTypes => ({
+export const addTodo = (todo: Todo): AddTodoAction => ({
   type: TypeKeys.ADD_TODO,
   todo,
 });
 
-export const removeTodo = (todo: Todo): TodoActionTypes => ({
+export const removeTodo = (todo: Todo): DeleteTodoAction => ({
   type: TypeKeys.DELETE_TODO,
   todo,
 });
 
-export const updateTodo = (todo: Todo): TodoActionTypes => ({
+export const updateTodo = (todo: Todo): UpdateTodoAction => ({
   type: TypeKeys.UPDATE_TODO,
   todo,
 });
 
-export const loadTodos = (): TodoActionTypes => ({
+export const loadTodos = (): LoadTodosAction => ({
   type: TypeKeys.LOAD_TODOS,
 });
 
-// POC
-// export const dummyTodo = (): TodoActionTypes => ({
-//   type: TypeKeys.LOAD_TODOS_FULFILLED,
-// });
-
-export const loadTodosFulfilled = (todos: Todo[]): loadTodosFulfilled => ({
+export const loadTodosFulfilled = (
+  todos: Todo[]
+): LoadTodosFulfilledAction => ({
   type: TypeKeys.LOAD_TODOS_FULFILLED,
-  todos : todos
+  todos: todos,
 });
 
-export const createNewTodo = (todo: Todo) => ({
-  type: TypeKeys.ADD_TODO,
-  // return async (dispatch: Dispatch<AppActions>) => {
-  //   const newTodo: Todo = await todoService.addTodo(todo);
-  //   dispatch(addTodo(newTodo));
-  // };
+export const loadTodosFailed = (): LoadTodosFailedAction => ({
+  type: TypeKeys.LOAD_TODOS_FAILED,
 });
 
-export interface AddTodoAction extends Action {
+export interface AddTodoAction {
   type: typeof TypeKeys.ADD_TODO;
   todo: Todo;
 }
 
-export interface DeleteTodoAction extends Action {
+export interface DeleteTodoAction {
   type: typeof TypeKeys.DELETE_TODO;
   todo: Todo;
 }
 
-export interface UpdateTodoAction extends Action {
+export interface UpdateTodoAction {
   type: typeof TypeKeys.UPDATE_TODO;
   todo: Todo;
 }
 
-export interface LoadTodosAction extends Action {
+export interface LoadTodosAction {
   type: typeof TypeKeys.LOAD_TODOS;
 }
 
-export interface loadTodosFulfilled extends Action {
+export interface LoadTodosFulfilledAction {
   type: typeof TypeKeys.LOAD_TODOS_FULFILLED;
   todos: Todo[];
 }
-
-// export interface DummyTodo extends Action {
-//   type: typeof TypeKeys.LOAD_TODOS_FULFILLED;
-// }
+export interface LoadTodosFailedAction {
+  type: typeof TypeKeys.LOAD_TODOS_FAILED;
+}
 
 export type TodoActionTypes =
   | AddTodoAction
   | DeleteTodoAction
   | UpdateTodoAction
   | LoadTodosAction
-  | loadTodosFulfilled;
+  | LoadTodosFailedAction
+  | LoadTodosFulfilledAction;

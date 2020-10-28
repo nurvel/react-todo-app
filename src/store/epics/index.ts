@@ -1,6 +1,17 @@
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import { loadTodosEpic } from "./todoEpics";
 
-export const rootEpic = combineEpics(loadTodosEpic);
+export interface EpicDependencies {}
 
-export default createEpicMiddleware();
+// const epicDependencies: EpicDependencies = {};
+
+// export const rootEpic = combineEpics(loadTodosEpic);
+
+// export const configureEpic = (dependencies = {}) =>  {
+//   createEpicMiddleware({
+//     dependencies: {
+//       ...epicDependencies,
+//       ...dependencies, // for testing inject external dependencies
+//     },
+//   });
+// };

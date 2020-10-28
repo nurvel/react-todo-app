@@ -2,12 +2,12 @@ import { TypeKeys } from "../actions";
 import { TodoFilterActionTypes } from "../actions/todoFilterActions";
 
 
-export interface TodoFilter {
+export interface TodoFilterState {
   showImportant: boolean;
   showDone: boolean;
 }
 
-const initialState: TodoFilter = {
+const initialState: TodoFilterState = {
   showImportant: true,
   showDone: true,
 };
@@ -15,7 +15,7 @@ const initialState: TodoFilter = {
 const reducer = (
   state = initialState,
   action: TodoFilterActionTypes
-): TodoFilter => {
+): TodoFilterState => {
   switch (action.type) {
     case TypeKeys.SET_TODOFILTER:
       return {

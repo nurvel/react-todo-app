@@ -1,7 +1,7 @@
 import { AppActions, TypeKeys } from ".";
-import { TodoFilter } from "../reducers/todoFilterReducer";
+import { TodoFilterState } from "../reducers/todoFilterReducer";
 
-export const setFilter = (filter: TodoFilter): AppActions => ({
+export const setFilter = (filter: TodoFilterState): AppActions => ({
   type: TypeKeys.SET_TODOFILTER,
   filter,
 });
@@ -20,7 +20,7 @@ export const toggleShowDone = (): AppActions => {
 
 export interface setTodoFilter {
   type: typeof TypeKeys.SET_TODOFILTER;
-  filter: TodoFilter;
+  filter: TodoFilterState;
 }
 
 export interface toggleShowImportant {
