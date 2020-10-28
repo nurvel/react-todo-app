@@ -6,14 +6,14 @@ This React Todo App is created to clarify the structure and functionalities betw
 
 ## BRANCHES
 
-| BRANCH               | ABOUT |
-| -------------------- | ----- |
-| master               | same as ts-react-redux |
-| js-react             | vanilla react - state in components, no typescript |
-| js-react-redux       | state in redux |
-| ts-react-redux       | implemented typesript |
-| js-react-redux-hooks | connect CHANGED to useSelector & dispatch as handle to state in components |
-| ts-react-redux-hooks | NOT DONE: the combination of two above
+| BRANCH                     | ABOUT |
+| -------------------------- | ----- |
+| master                     | same as ts-react-redux-observables |
+| js-react                   | vanilla react - state in components, no typescript |
+| js-react-redux             | state in redux |
+| ts-react-redux             | implemented typesript |
+| js-react-redux-hooks       | connect CHANGED to useSelector & dispatch as handle to state in components |
+| ts-react-redux-observables | epics / rxjs / observables to manace async state + refactored component structure |
 
 ## FUNCTIONALITIES
 - Save a todo item  (description, important(y/n))
